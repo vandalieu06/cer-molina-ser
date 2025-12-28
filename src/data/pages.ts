@@ -1,5 +1,7 @@
 const base = import.meta.env.BASE_URL;
 
+export const pageTitle = "Cer Molina Segura";
+
 export const pages = [
   { title: "Inicio", url: `${base}/` },
   { title: "Sobre Nosotros", url: `${base}/sobre-nosotros` },
