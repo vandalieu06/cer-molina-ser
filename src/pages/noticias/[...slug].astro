@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Calendar, Tag, ArrowLeft } from "@lucide/astro";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`${entry.data.title} | CER Molina Segura`}>
+  <article class="py-20 flex justify-center bg-white">
+    <div class="w-full xl:max-w-4xl px-6">
+      <a
+        href={`${import.meta.env.BASE_URL}/noticias`}
+        class="flex items-center gap-2 text-gray-400 hover:text-blue-700 transition-colors mb-12 font-bold uppercase text-xs tracking-widest"
+      >
+        <ArrowLeft size={16} /> Volver al blog
+      </a>
+
+      <header class="mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <span
+            class="bg-blue-700 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest italic"
+          >
+            {entry.data.tag}
+          </span>
+          <div class="flex items-center text-gray-400 text-sm">
+            <Calendar size={16} class="mr-2" />
+            {entry.data.date}
+          </div>
+        </div>
+        <h1
+          class="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight italic leading-[1.1]"
+        >
+          {entry.data.title}
+        </h1>
+      </header>
+
+      <div class="aspect-video mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
+        <img
+          src={entry.data.image.src}
+          alt=""
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div
+        class="prose prose-lg prose-blue max-w-none
+        prose-headings:italic prose-headings:font-bold prose-headings:tracking-tight
+        prose-p:text-gray-600 prose-p:leading-relaxed
+        prose-strong:text-gray-900"
+      >
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>

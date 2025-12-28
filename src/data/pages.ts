@@ -11,5 +11,6 @@ export const pages = [
   { title: "Hazte Socio/a", url: `${base}/socios` },
   { title: "Donaciones", url: `${base}/donaciones` },
   { title: "Recursos", url: `${base}/recursos` },
+  { title: "Noticias", url: `${base}/noticias` },
   { title: "Contacto", url: `${base}/contacto` },
 ];
