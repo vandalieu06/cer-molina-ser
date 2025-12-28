@@ -1,0 +1,84 @@
+---
+import { Heart, HandHeart, House } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+interface Service {
+  title: string;
+  description: string;
+  cta: string;
+  href: string;
+  color: string;
+  icon: any; // Pasamos el componente del icono
+}
+
+const services: Service[] = [
+  {
+    title: "Adopta un amigo",
+    description:
+      "Muchos animales esperan un hogar donde recibir cariño. Te guiaremos en todo el proceso para encontrar a tu compañero ideal.",
+    cta: "Ver animales para adoptar",
+    href: "/adopta",
+    color: "text-blue-700",
+    icon: House,
+  },
+  {
+    title: "Donaciones",
+    description:
+      "Tu ayuda económica se destina íntegramente a alimentación, medicinas y mejoras en el refugio. Cada granito de arena cuenta.",
+    cta: "Información para donar",
+    href: "/donar",
+    color: "text-amber-700",
+    icon: Heart,
+  },
+  {
+    title: "Voluntariado",
+    description:
+      "¿Tienes tiempo libre? Únete a nuestro equipo para pasear perros, cuidar gatos o ayudar en el mantenimiento del centro.",
+    cta: "Quiero ser voluntario",
+    href: "/voluntariado",
+    color: "text-emerald-700",
+    icon: HandHeart,
+  },
+];
+---
+
+<section class="py-16 bg-white flex justify-center border-t border-gray-100">
+  <div class="w-full xl:max-w-7xl px-6">
+    <div class="text-left mb-12 border-l-4 border-blue-600 pl-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        ¿Cómo puedes colaborar con nosotros?
+      </h2>
+      <p class="text-lg text-gray-600 mt-2">
+        Tu apoyo es fundamental para seguir cuidando de ellos.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {
+        services.map((service) => (
+          <div class="bg-gray-50 p-10 rounded-lg border-2 border-gray-100 flex flex-col h-full shadow-sm hover:border-blue-200 transition-colors">
+            <div class={`${service.color} mb-6`}>
+              <service.icon size={48} strokeWidth={1.5} />
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              {service.title}
+            </h3>
+
+            <p class="text-gray-700 text-lg mb-8 grow leading-snug">
+              {service.description}
+            </p>
+
+            <a
+              href={service.href}
+              class="inline-flex items-center justify-center gap-2 py-4 px-6 rounded-md font-bold text-white bg-gray-900 hover:bg-blue-700 transition-all text-lg shadow-md"
+            >
+              {service.cta}
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

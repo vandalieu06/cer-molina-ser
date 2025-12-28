@@ -1,0 +1,42 @@
+---
+import { ShieldCheck, Heart, Eye } from "@lucide/astro";
+
+const valores = [
+  {
+    title: "Bienestar Animal",
+    desc: "Priorizamos la salud física y emocional de cada gato que rescatamos o gestionamos.",
+    icon: Heart,
+  },
+  {
+    title: "Compromiso Ético",
+    desc: "Nuestras acciones se rigen por el respeto absoluto a la vida y la dignidad animal.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Transparencia",
+    desc: "Informamos puntualmente de cada campaña, donación y resultado de nuestro trabajo.",
+    icon: Eye,
+  },
+];
+---
+
+<section class="py-16 bg-gray-50 flex justify-center border-t border-gray-100">
+  <div class="w-full xl:max-w-7xl px-6">
+    <h2 class="text-3xl font-bold text-gray-900 italic mb-12">
+      Lo que nos guía
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        valores.map((item) => (
+          <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group">
+            <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-700 group-hover:text-white transition-colors">
+              <item.icon size={28} />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{item.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

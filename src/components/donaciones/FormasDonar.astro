@@ -1,0 +1,77 @@
+---
+import { Smartphone, Landmark, Heart } from "@lucide/astro";
+---
+
+<section class="py-20 bg-white flex justify-center">
+  <div class="w-full xl:max-w-7xl px-6">
+    <div class="mb-12">
+      <span
+        class="text-blue-400 font-semibold tracking-widest uppercase text-sm"
+        >Aportaciones puntuales</span
+      >
+      <h2 class="text-4xl font-bold text-gray-900 tracking-tight italic mt-2">
+        Formas de Donar
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+        class="p-8 rounded-3xl border border-gray-100 bg-gray-50 flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-[#00AAAD] text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-teal-100"
+        >
+          <Smartphone size={32} />
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Bizum</h3>
+        <p class="text-gray-600 mb-6 text-sm">
+          La forma más rápida de ayudarnos con cualquier importe.
+        </p>
+        <span
+          class="text-2xl font-black text-[#00AAAD] tracking-widest font-mono"
+          >33445</span
+        >
+        <p class="text-xs text-gray-400 mt-2">(Código ONG)</p>
+      </div>
+
+      <div
+        class="p-8 rounded-3xl border border-gray-100 bg-gray-50 flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-blue-700 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-100"
+        >
+          <Landmark size={32} />
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Transferencia</h3>
+        <p class="text-gray-600 mb-4 text-sm">
+          Ideal para donaciones recurrentes o importes mayores.
+        </p>
+        <p
+          class="text-xs font-mono text-gray-500 bg-white p-3 rounded-lg border border-gray-200 break-all"
+        >
+          ES00 1234 5678 9012 3456 7890
+        </p>
+      </div>
+
+      <div
+        class="p-8 rounded-3xl border border-gray-100 bg-gray-50 flex flex-col items-center text-center"
+      >
+        <div
+          class="w-16 h-16 bg-orange-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-100"
+        >
+          <Heart size={32} />
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Teaming</h3>
+        <p class="text-gray-600 mb-6 text-sm">
+          Solo 1€ al mes. Pequeños gestos que hacen grandes cambios.
+        </p>
+        <a
+          href="#"
+          class="text-orange-600 font-bold hover:underline italic flex items-center gap-2"
+        >
+          Unirse al grupo Teaming
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
