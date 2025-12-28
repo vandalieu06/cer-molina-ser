@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "@components/donaciones/Hero.astro";
+import InfoContacto from "@components/contacto/InfoContacto.astro";
+import FormContacto from "@components/contacto/FormContacto.astro";
+---
+
+<Layout>
+  <Hero />
+  <section class="py-20 flex justify-center bg-white">
+    <div
+      class="w-full xl:max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
+    >
+      <InfoContacto />
+      <FormContacto />
+    </div>
+  </section>
+</Layout>

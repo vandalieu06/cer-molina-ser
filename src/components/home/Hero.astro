@@ -1,0 +1,40 @@
+---
+import bgImageWelcome from "@assets/bg-home-welcome.jpg";
+const alt =
+  "Foto de Batitay Japheth: https://www.pexels.com/es-es/foto/animal-mascota-cabeza-gato-16679036/";
+---
+
+<section
+  class="welcome-section min-h-[60vh] py-12 flex items-center justify-center"
+>
+  <div class="w-full xl:max-w-7xl px-6 flex flex-col gap-4">
+    <span class="text-blue-400 font-semibold tracking-widest uppercase text-sm">
+      CER Molina Segura
+    </span>
+    <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tight">
+      Bienvenido
+    </h2>
+    <p class="text-gray-300 text-lg">
+      Buscamos a los mejores adoptantes del mundo
+    </p>
+    <a
+      href="/adopciones"
+      class="w-max px-5 py-2 text-white bg-blue-700 hover:bg-blue-800 rounded-lg cursor-pointer transition-colors duration-300 ease-in-out"
+      type="button"
+    >
+      Informate ahora
+    </a>
+  </div>
+</section>
+
+<style define:vars={{ bgUrl: `url(${bgImageWelcome.src})` }}>
+  .welcome-section {
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%),
+      var(--bgUrl);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+</style>

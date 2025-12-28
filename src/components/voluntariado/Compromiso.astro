@@ -1,0 +1,50 @@
+---
+import { CheckCircle2 } from "@lucide/astro";
+const requisitos = [
+  "Ser mayor de edad (18 años).",
+  "Compromiso mínimo de 4 horas semanales.",
+  "Respeto absoluto por el protocolo CER y bienestar animal.",
+  "Capacidad de trabajo en equipo y empatía.",
+  "Asistir a la formación inicial para voluntarios.",
+];
+---
+
+<section
+  class="py-20 bg-gray-900 text-white flex justify-center overflow-hidden relative"
+>
+  <div
+    class="w-full xl:max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+  >
+    <div>
+      <h2 class="text-4xl font-bold tracking-tight italic mb-6">
+        Requisitos y <span class="text-blue-400">Compromiso</span>
+      </h2>
+      <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+        Ser voluntario en CER Molina Segura requiere responsabilidad. No solo
+        trabajamos con animales, sino con una comunidad que confía en nosotros.
+      </p>
+      <ul class="space-y-4">
+        {
+          requisitos.map((req) => (
+            <li class="flex items-center gap-3">
+              <CheckCircle2 class="text-orange-500 shrink-0" size={20} />
+              <span class="text-gray-200">{req}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div
+      class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm"
+    >
+      <h3 class="text-2xl font-bold mb-4 text-blue-400 italic">
+        ¿Qué ofrecemos?
+      </h3>
+      <p class="text-gray-300 mb-4 italic">
+        "Formar parte de una familia que lucha por un mundo mejor, formación
+        continua y la satisfacción de salvar vidas diariamente."
+      </p>
+      <div class="h-1 w-20 bg-blue-700"></div>
+    </div>
+  </div>
+</section>

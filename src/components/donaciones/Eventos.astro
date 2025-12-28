@@ -1,0 +1,50 @@
+---
+import { Calendar, MapPin } from "@lucide/astro";
+
+const proximosEventos = [
+  {
+    fecha: "15 Ene",
+    titulo: "Mercadillo Solidario",
+    lugar: "Plaza del Ayuntamiento",
+    desc: "Venta de artesanía y repostería casera a favor del método CER.",
+  },
+  {
+    fecha: "22 Ene",
+    titulo: "Charla Concienciación",
+    lugar: "Biblioteca Municipal",
+    desc: "Cómo convivir con colonias felinas en nuestro barrio.",
+  },
+];
+---
+
+<section class="py-20 bg-white flex justify-center">
+  <div class="w-full xl:max-w-7xl px-6">
+    <h2 class="text-3xl font-bold text-gray-900 italic mb-12">
+      Calendario de Eventos
+    </h2>
+    <div class="space-y-6">
+      {
+        proximosEventos.map((evento) => (
+          <div class="flex flex-col md:flex-row gap-6 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow items-center bg-gray-50/50">
+            <div class="bg-blue-700 text-white p-4 rounded-xl text-center min-w-25">
+              <span class="block text-2xl font-black">
+                {evento.fecha.split(" ")[0]}
+              </span>
+              <span class="text-xs uppercase tracking-widest">
+                {evento.fecha.split(" ")[1]}
+              </span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900">{evento.titulo}</h3>
+              <p class="text-gray-600 text-sm mt-1">{evento.desc}</p>
+            </div>
+            <div class="flex items-center gap-2 text-gray-400 text-sm">
+              <MapPin size={18} class="text-blue-400" />
+              {evento.lugar}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

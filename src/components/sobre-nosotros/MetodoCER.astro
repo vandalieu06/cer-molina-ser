@@ -1,0 +1,67 @@
+---
+import bgCER from "@assets/bg-cer.jpg"; // Una foto de un gato de colonia
+---
+
+<section class="cer-section py-24 flex justify-center text-white">
+  <div class="w-full xl:max-w-7xl px-6">
+    <div class="max-w-3xl">
+      <span class="text-orange-400 font-bold tracking-widest uppercase text-sm">
+        Gestión Ética
+      </span>
+      <h2
+        class="text-4xl md:text-6xl font-bold tracking-tight italic mt-4 mb-8"
+      >
+        ¿Por qué el Método CER?
+      </h2>
+      <p class="text-xl text-gray-200 mb-10 leading-relaxed">
+        El método <strong>Captura, Esterilización y Retorno</strong> es la única herramienta
+        eficaz para controlar la población felina garantizando su bienestar.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="bg-black/40 backdrop-blur-sm p-6 rounded-lg border border-white/10"
+        >
+          <span class="text-4xl font-black text-blue-400">C</span>
+          <h4 class="font-bold mt-2">Captura</h4>
+          <p class="text-sm text-gray-300 mt-1">
+            Trampas selectivas que no causan estrés ni dolor.
+          </p>
+        </div>
+        <div
+          class="bg-black/40 backdrop-blur-sm p-6 rounded-lg border border-white/10"
+        >
+          <span class="text-4xl font-black text-blue-400">E</span>
+          <h4 class="font-bold mt-2">Esterilización</h4>
+          <p class="text-sm text-gray-300 mt-1">
+            Control veterinario y marcado de oreja identificativo.
+          </p>
+        </div>
+        <div
+          class="bg-black/40 backdrop-blur-sm p-6 rounded-lg border border-white/10"
+        >
+          <span class="text-4xl font-black text-blue-400">R</span>
+          <h4 class="font-bold mt-2">Retorno</h4>
+          <p class="text-sm text-gray-300 mt-1">
+            Vuelta a su colonia de origen con alimentación controlada.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ bgUrl: `url(${bgCER.src})` }}>
+  .cer-section {
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(17, 24, 39, 0.95) 0%,
+        rgba(17, 24, 39, 0.7) 100%
+      ),
+      var(--bgUrl);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+</style>

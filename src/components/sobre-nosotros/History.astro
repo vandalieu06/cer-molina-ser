@@ -1,0 +1,46 @@
+---
+import imgHistoria from "@assets/historia-protectora.jpg";
+---
+
+<section class="py-20 bg-white flex justify-center">
+  <div
+    class="w-full xl:max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+  >
+    <div>
+      <span
+        class="text-blue-400 font-semibold tracking-widest uppercase text-sm"
+      >
+        Desde 2015
+      </span>
+      <h2
+        class="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight italic mt-2 mb-6"
+      >
+        Nuestra Historia
+      </h2>
+      <div class="space-y-4 text-gray-600 text-lg leading-relaxed">
+        <p>
+          CER Molina Segura nació de la necesidad urgente de dar voz a quienes
+          no la tienen en nuestras calles. Lo que comenzó como un pequeño grupo
+          de voluntarios, hoy es una organización referente en la gestión ética
+          felina.
+        </p>
+        <p>
+          Nuestra trayectoria está marcada por la resiliencia y el amor
+          incondicional, trabajando día a día para que Molina de Segura sea un
+          lugar ejemplo de convivencia entre ciudadanos y colonias felinas.
+        </p>
+      </div>
+    </div>
+    <div class="relative">
+      <div
+        class="absolute -top-4 -left-4 w-24 h-24 bg-orange-100 rounded-full -z-10"
+      >
+      </div>
+      <img
+        src={imgHistoria.src}
+        alt="Nuestros inicios"
+        class="rounded-2xl shadow-2xl w-full object-cover aspect-4/3"
+      />
+    </div>
+  </div>
+</section>

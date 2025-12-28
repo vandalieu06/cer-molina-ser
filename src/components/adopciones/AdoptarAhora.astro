@@ -1,0 +1,39 @@
+---
+import bgAdopta from "@assets/bg-adopta.jpg";
+---
+
+<section
+  class="adopta-now-section min-h-[40vh] py-16 flex items-center justify-center text-white"
+>
+  <div
+    class="w-full xl:max-w-7xl px-6 flex flex-col items-center text-center gap-6"
+  >
+    <span class="text-orange-400 font-bold tracking-widest uppercase text-sm">
+      Cambia una vida
+    </span>
+    <h2 class="text-5xl md:text-6xl font-bold tracking-tight italic">
+      ¿Buscas un nuevo compañero?
+    </h2>
+    <p class="text-gray-200 text-lg max-w-2xl">
+      Nuestros gatos esperan una oportunidad para llenar tu hogar de ronroneos.
+      Todos se entregan con contrato, microchip y compromiso de esterilización.
+    </p>
+    <a
+      href="/adopciones/gatos"
+      class="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl transition-all transform hover:scale-105 shadow-xl"
+    >
+      Ver gatos en adopción
+    </a>
+  </div>
+</section>
+
+<style define:vars={{ bgUrl: `url(${bgAdopta.src})` }}>
+  .adopta-now-section {
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      var(--bgUrl);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+</style>

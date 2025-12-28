@@ -1,0 +1,59 @@
+---
+import { Utensils, Truck, Share2, CalendarDays, FileText } from "@lucide/astro";
+
+const modalidades = [
+  {
+    titulo: "Alimentación",
+    desc: "Gestión y reparto de alimento en las colonias autorizadas del municipio.",
+    icon: Utensils,
+  },
+  {
+    titulo: "Capturas y Traslados",
+    desc: "Apoyo en el método CER: transporte de gatos al veterinario y capturas seguras.",
+    icon: Truck,
+  },
+  {
+    titulo: "Redes Sociales",
+    desc: "Ayúdanos a difundir nuestros casos, eventos y gatos en adopción.",
+    icon: Share2,
+  },
+  {
+    titulo: "Eventos y Mercadillos",
+    desc: "Presencia en stands informativos para recaudar fondos y concienciar.",
+    icon: CalendarDays,
+  },
+  {
+    titulo: "Documentación",
+    desc: "Tareas administrativas, gestión de carnets de alimentador y censos.",
+    icon: FileText,
+  },
+];
+---
+
+<section class="py-20 bg-white flex justify-center">
+  <div class="w-full xl:max-w-7xl px-6">
+    <div class="mb-12">
+      <span
+        class="text-blue-400 font-semibold tracking-widest uppercase text-sm"
+        >¿Cómo puedes ayudar?</span
+      >
+      <h2 class="text-4xl font-bold text-gray-900 tracking-tight italic mt-2">
+        Modalidades de Voluntariado
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        modalidades.map((tipo) => (
+          <div class="p-8 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-blue-50/50 transition-colors group">
+            <div class="w-12 h-12 bg-white text-blue-700 rounded-lg flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+              <tipo.icon size={24} />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{tipo.titulo}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{tipo.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

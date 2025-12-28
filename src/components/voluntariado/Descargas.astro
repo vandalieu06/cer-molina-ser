@@ -1,0 +1,38 @@
+---
+import { Download } from "@lucide/astro";
+const documentos = [
+  { nombre: "Guía del Voluntario 2025", peso: "1.2 MB" },
+  { nombre: "Protocolo de Seguridad Alimentadores", peso: "850 KB" },
+  { nombre: "Estatutos de la Asociación", peso: "2.1 MB" },
+];
+---
+
+<section class="py-16 bg-gray-50 flex justify-center border-b border-gray-100">
+  <div class="w-full xl:max-w-7xl px-6">
+    <h2 class="text-2xl font-bold text-gray-900 italic mb-8">
+      Documentación de interés
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {
+        documentos.map((doc) => (
+          <a
+            href="#"
+            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-blue-700 transition-colors group"
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-blue-50 text-blue-700 rounded-lg group-hover:bg-blue-700 group-hover:text-white transition-colors">
+                <Download size={20} />
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 text-sm leading-tight">
+                  {doc.nombre}
+                </p>
+                <p class="text-xs text-gray-400">{doc.peso}</p>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
