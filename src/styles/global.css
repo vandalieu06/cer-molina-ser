@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  --color-maroon-100: #fce8e8; /* Para fondos de iconos */
+  --color-maroon-400: #a62626; /* Para etiquetas o texto destacado */
+  --color-maroon-500: #800000; /* Tu granate principal */
+  --color-maroon-900: #4a0404; /* Tu granate oscuro */
+}
