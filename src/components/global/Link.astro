@@ -1,0 +1,17 @@
+---
+const { url, text, isActive, isDesktop } = Astro.props;
+
+const baseClass = isDesktop
+  ? "text-sm font-bold transition-all hover:text-blue-700"
+  : "mobile-link text-2xl font-bold tracking-tight transition-colors cursor-pointer";
+
+const extraClass = isActive
+  ? "text-blue-700 underline underline-offset-8"
+  : "text-gray-600";
+---
+
+<li>
+  <a href={url} class={`${baseClass} ${extraClass}`}>
+    {text}
+  </a>
+</li>

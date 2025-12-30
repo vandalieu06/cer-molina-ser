@@ -1,29 +1,26 @@
 ---
+import { Image } from "astro:assets";
 import { Menu, X } from "@lucide/astro";
-import { pages, pageTitle } from "@data/pages";
+import Link from "@components/global/Link.astro";
+import { pages } from "@data/pages";
+import { getPath } from "@utils/paths";
+import imglogo from "@assets/logo.jpg";
 
 interface Page {
   title: string;
   url: string;
 }
 
-// Obtenemos la ruta actual para marcar el enlace activo
 const { pathname } = Astro.url;
 const normalizedPathname = pathname.replace(/\/$/, "");
 ---
 
-<header
-  class="py-6 flex justify-center relative bg-white border-b border-gray-50"
->
+<header class="py-1 flex justify-center relative bg-white">
   <div class="w-full xl:max-w-7xl px-6 flex justify-between items-center">
     <!-- Logo -->
     <div class="z-50">
-      <a href="/" class="group">
-        <h1
-          class="text-xl font-bold tracking-tight text-gray-900 group-hover:text-blue-700 transition-colors"
-        >
-          {pageTitle}
-        </h1>
+      <a href={getPath("/")}>
+        <Image src={imglogo} alt="Logo de web" class="w-25" />
       </a>
     </div>
 
@@ -33,28 +30,21 @@ const normalizedPathname = pathname.replace(/\/$/, "");
         {
           pages.map((page: Page) => {
             const isActive =
-              normalizedPathname === page.url.replace(/\/$/, "") ||
-              (pathname === "/" && page.url === "/");
+              normalizedPathname === getPath(page.url).replace(/\/$/, "");
             return (
-              <li>
-                <a
-                  href={page.url}
-                  class={`text-sm font-bold transition-all hover:text-blue-700 ${
-                    isActive
-                      ? "text-blue-700 underline underline-offset-8"
-                      : "text-gray-600"
-                  }`}
-                >
-                  {page.title}
-                </a>
-              </li>
+              <Link
+                url={getPath(page.url)}
+                text={page.title}
+                isActive={isActive}
+                isDesktop={true}
+              />
             );
           })
         }
       </ul>
     </nav>
 
-    <!-- Botón Menú Móvil (Cambiado a 'lg' para que en tablets se vea el hamburguesa si hay muchos links) -->
+    <!-- Botón Menú Móvil -->
     <button
       id="menu-toggle"
       aria-label="Abrir menú"
@@ -84,16 +74,18 @@ const normalizedPathname = pathname.replace(/\/$/, "");
       <nav class="text-center overflow-y-auto max-h-screen py-20">
         <ul class="flex flex-col gap-8">
           {
-            pages.map((page: Page) => (
-              <li>
-                <a
-                  href={page.url}
-                  class="mobile-link text-3xl font-bold tracking-tight text-gray-900 hover:text-blue-700 transition-colors cursor-pointer"
-                >
-                  {page.title}
-                </a>
-              </li>
-            ))
+            pages.map((page: Page) => {
+              const isActive =
+                normalizedPathname === getPath(page.url).replace(/\/$/, "");
+              return (
+                <Link
+                  url={getPath(page.url)}
+                  text={page.title}
+                  isActive={isActive}
+                  isDesktop={false}
+                />
+              );
+            })
           }
         </ul>
       </nav>
@@ -101,6 +93,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
   </div>
 </header>
 
+<!-- Funcionalidad Hedaer Menu Hamburger -->
 <script>
   const btn = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
@@ -123,6 +116,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
         "pointer-events-auto",
         "translate-y-0",
       );
+      menuIcon?.classList.remove("opacity-100", "scale-100", "rotate-0");
       menuIcon?.classList.add("opacity-0", "scale-50", "rotate-90");
       closeIcon?.classList.remove("opacity-0", "scale-50", "-rotate-90");
       closeIcon?.classList.add("opacity-100", "scale-100", "rotate-0");
@@ -138,6 +132,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
         "pointer-events-none",
         "translate-y-[-10px]",
       );
+      menuIcon?.classList.add("opacity-100", "scale-100", "rotate-0");
       menuIcon?.classList.remove("opacity-0", "scale-50", "rotate-90");
       closeIcon?.classList.add("opacity-0", "scale-50", "-rotate-90");
       closeIcon?.classList.remove("opacity-100", "scale-100", "rotate-0");
