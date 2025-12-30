@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { Calendar, Tag, ArrowLeft } from "@lucide/astro";
+import { Calendar, ArrowLeft } from "@lucide/astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -44,7 +44,7 @@ const { Content } = await entry.render();
         </h1>
       </header>
 
-      <div class="aspect-video mb-16 rounded-[2rem] overflow-hidden shadow-2xl">
+      <div class="aspect-video mb-16 rounded-4xla overflow-hidden shadow-2xl">
         <img
           src={entry.data.image.src}
           alt=""

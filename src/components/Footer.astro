@@ -2,20 +2,19 @@
 import {
   Facebook,
   Instagram,
-  Twitter,
+  Music2,
   Mail,
   MapPin,
   Heart,
 } from "@lucide/astro";
+import { pages, pageTitle } from "@data/pages";
+import { getPath } from "@utils/paths";
 
 interface Page {
   title: string;
   url: string;
 }
 
-import { pages, pageTitle } from "@data/pages";
-
-// Dividimos los links para que no sea una lista infinita hacia abajo
 const mainLinks = pages.slice(0, 5);
 const supportLinks = pages.slice(5);
 ---
@@ -33,25 +32,28 @@ const supportLinks = pages.slice(5);
         </p>
         <div class="flex gap-4 mt-2">
           <a
-            href="#"
+            href="https://www.facebook.com/CERMolinadeSegura/"
             class="hover:text-blue-400 transition-colors"
             aria-label="Facebook"
+            target="_blank"
           >
             <Facebook size={24} />
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/cermolinadesegura/"
             class="hover:text-pink-400 transition-colors"
             aria-label="Instagram"
+            target="_blank"
           >
             <Instagram size={24} />
           </a>
           <a
-            href="#"
+            href="https://www.tiktok.com/@cermolinadesegura?is_from_webapp=1&sender_device=pc"
             class="hover:text-sky-400 transition-colors"
             aria-label="Twitter"
+            target="_blank"
           >
-            <Twitter size={24} />
+            <Music2 size={24} />
           </a>
         </div>
       </div>
@@ -65,7 +67,7 @@ const supportLinks = pages.slice(5);
             mainLinks.map((page: Page) => (
               <li>
                 <a
-                  href={page.url}
+                  href={getPath(page.url)}
                   class="hover:text-white hover:translate-x-1 transition-all inline-block italic"
                 >
                   {page.title}
@@ -85,7 +87,7 @@ const supportLinks = pages.slice(5);
             supportLinks.map((page: Page) => (
               <li>
                 <a
-                  href={page.url}
+                  href={getPath(page.url)}
                   class="hover:text-white hover:translate-x-1 transition-all inline-block italic"
                 >
                   {page.title}
@@ -114,7 +116,7 @@ const supportLinks = pages.slice(5);
           </li>
           <li class="mt-4">
             <a
-              href="/donaciones"
+              href={getPath("/donaciones")}
               class="flex items-center justify-center gap-2 bg-white text-black py-3 px-4 rounded-md font-bold hover:bg-blue-500 hover:text-white transition-all"
             >
               <Heart size={18} fill="currentColor" />

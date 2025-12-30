@@ -1,9 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Hero from "@components/donaciones/Hero.astro";
 import FormasDonar from "@components/donaciones/FormasDonar.astro";
 import OtrosApoyos from "@components/donaciones/OtrosApoyos.astro";
 import Eventos from "@components/donaciones/Eventos.astro";
+import { getPath } from "@utils/paths";
 ---
 
 <Layout>
@@ -13,7 +14,7 @@ import Eventos from "@components/donaciones/Eventos.astro";
   <Eventos />
   <section class="py-12 flex flex-col items-center text-center bg-blue-50">
     <p class="text-gray-600 italic">¿Eres una empresa?</p>
-    <a href="/contacto" class="text-blue-700 font-bold underline">
+    <a href={getPath("/contacto")} class="text-blue-700 font-bold">
       Colabora con nosotros
     </a>
   </section>

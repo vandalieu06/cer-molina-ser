@@ -1,49 +1,19 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import { Calendar, ArrowRight } from "@lucide/astro";
-import baseImgCat from "@assets/cat-1.jpg";
+import { getPath } from "@utils/paths";
 
-interface Post {
-  date: string;
-  tag: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  href: string;
-}
-
-const news: Post[] = [
-  {
-    date: "24 Dic, 2025",
-    tag: "Campaña",
-    title: "Campaña de Invierno: Refugios cálidos para gatos",
-    excerpt:
-      "Buscamos mantas térmicas y rascadores para que nuestros felinos pasen un invierno confortable mientras esperan su hogar definitivo.",
-    image: baseImgCat.src,
-    href: "/noticias/campana-invierno",
-  },
-  {
-    date: "15 Dic, 2025",
-    tag: "Éxito",
-    title: "Nueva zona de juegos: El 'Gaticat' ya es una realidad",
-    excerpt:
-      "Gracias a las donaciones del último mes, hemos inaugurado un espacio vertical de juegos para mejorar el bienestar de los gatos más jóvenes.",
-    image: baseImgCat.src,
-    href: "/noticias/nueva-zona-juegos",
-  },
-  {
-    date: "08 Dic, 2025",
-    tag: "Adopción",
-    title: "Récord de adopciones: 15 gatos encontraron hogar este mes",
-    excerpt:
-      "Diciembre ha sido un mes especial. Gracias a la generosidad de nuestras familias adoptantes, 15 gatitos tienen ahora un hogar para siempre.",
-    image: baseImgCat.src,
-    href: "/noticias/record-adopciones",
-  },
-];
+const posts = (await getCollection("blog"))
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  )
+  .slice(0, 3);
 ---
 
 <section class="py-16 bg-gray-50 flex justify-center border-t border-gray-100">
   <div class="w-full xl:max-w-7xl px-6">
+    <!-- Titulo y Link a todas noticias -->
     <div
       class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
     >
@@ -56,7 +26,7 @@ const news: Post[] = [
         </p>
       </div>
       <a
-        href="/noticias"
+        href={getPath("/noticias")}
         class="text-blue-700 font-bold hover:underline flex items-center gap-2 text-lg group"
       >
         Ver todo el blog
@@ -66,39 +36,43 @@ const news: Post[] = [
         />
       </a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Vista de Noticias -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {
-        news.map((item) => (
-          <article class="bg-white rounded-xl overflow-hidden shadow-sm flex flex-col border border-gray-200 hover:shadow-md transition-all">
-            <div class="w-full h-64 overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.title}
-                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                loading="lazy"
+        posts.map((post) => (
+          <article class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group flex flex-col">
+            <div class="aspect-video overflow-hidden">
+              <Image
+                src={post.data.image}
+                alt={post.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-6 flex flex-col flex-1">
+            <div class="p-8 flex flex-col flex-1">
               <div class="flex items-center gap-3 mb-4">
                 <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                  {item.tag}
+                  {post.data.tag}
                 </span>
-                <div class="flex items-center text-gray-500 text-sm">
-                  <Calendar size={16} class="mr-1.5 text-gray-400" />
-                  {item.date}
+                <div class="flex items-center text-gray-400 text-sm">
+                  <Calendar size={14} class="mr-1" />
+                  {post.data.date}
                 </div>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3 leading-tight">
-                {item.title}
-              </h3>
-              <p class="text-gray-600 text-base mb-6 line-clamp-2 leading-relaxed">
-                {item.excerpt}
+              <h2 class="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-blue-700 transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-gray-600 mb-8 line-clamp-3 italic">
+                {post.data.excerpt}
               </p>
               <a
-                href={item.href}
-                class="text-blue-700 font-extrabold flex items-center gap-1 hover:text-blue-900 transition-colors mt-auto"
+                href={getPath(`/noticias/${post.slug}`)}
+                class="mt-auto flex items-center gap-2 text-blue-700 font-black uppercase text-xs tracking-[0.2em] hover:gap-4 transition-all"
               >
-                Leer más <ArrowRight size={18} />
+                Leer noticia completa
+                <ArrowRight
+                  size={16}
+                  class="group-hover:translate-x-1 transition-transform"
+                />
               </a>
             </div>
           </article>
