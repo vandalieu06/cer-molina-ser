@@ -10,21 +10,21 @@ const beneficios = [
 ];
 ---
 
-<section class="py-20 bg-white flex justify-center">
+<section class="py-20 bg-cream flex justify-center">
   <div class="w-full xl:max-w-7xl px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
         <span
-          class="text-maroon-500 font-semibold tracking-widest uppercase text-sm"
+          class="text-maroon-500 font-sans font-semibold tracking-widest uppercase text-sm"
         >
           Tu apoyo es vital
         </span>
         <h2
-          class="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight italic mt-2 mb-6"
+          class="text-4xl md:text-5xl font-bold text-maroon-900 tracking-tight italic mt-2 mb-6 font-serif"
         >
           ¿Por qué hacerte socio?
         </h2>
-        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+        <p class="text-neutral text-lg mb-8 leading-relaxed font-sans">
           Las cuotas de nuestros socios son la base que nos permite planificar
           capturas, pagar facturas veterinarias urgentes y mantener nuestras
           colonias alimentadas durante todo el año. Ser socio es ser el motor
@@ -34,10 +34,10 @@ const beneficios = [
           {
             beneficios.map((ben) => (
               <li class="flex items-start gap-3">
-                <div class="mt-1 bg-maroon-100 p-1 rounded-full text-maroon-500">
+                <div class="mt-1 bg-gold-light p-1 rounded-full text-gold">
                   <CircleCheck size={18} />
                 </div>
-                <span class="text-gray-700 font-medium">{ben}</span>
+                <span class="text-neutral font-medium font-sans">{ben}</span>
               </li>
             ))
           }
@@ -45,29 +45,29 @@ const beneficios = [
       </div>
 
       <div
-        class="bg-maroon-900 rounded-3xl p-10 text-white relative overflow-hidden shadow-2xl border border-maroon-500/20"
+        class="bg-maroon-900 rounded-xl p-10 text-white relative overflow-hidden shadow-2xl border border-cream-dark/40 shadow-maroon-500/10"
       >
         <div class="absolute top-0 right-0 p-8 opacity-10">
           <Heart size={150} />
         </div>
         <div class="relative z-10">
-          <h3 class="text-2xl font-bold mb-2">Cuota Anual Única</h3>
-          <p class="text-maroon-100/60 mb-6 uppercase tracking-widest text-sm">
+          <h3 class="text-2xl font-bold mb-2 font-serif">Cuota Anual Única</h3>
+          <p class="text-cream-dark/70 mb-6 font-sans uppercase tracking-widest text-sm">
             Compromiso con la vida
           </p>
           <div class="flex items-baseline gap-2 mb-8">
-            <span class="text-6xl font-black text-maroon-400">40€</span>
-            <span class="text-maroon-100/50">/ año</span>
+            <span class="text-6xl font-black text-gold">40€</span>
+            <span class="text-cream-dark/50 font-sans">/ año</span>
           </div>
           <p
-            class="text-gray-200 text-sm italic mb-8 border-l-2 border-maroon-500 pl-4"
+            class="text-cream-dark text-sm italic mb-8 border-l-2 border-gold pl-4 font-sans"
           >
             "Menos de 4 euros al mes para asegurar que ninguna camada nazca en
             el desamparo."
           </p>
           <a
             href="#formulario-socio"
-            class="block w-full text-center bg-maroon-500 hover:bg-maroon-400 py-4 rounded-xl font-bold transition-all shadow-lg shadow-black/20"
+            class="block w-full text-center bg-maroon-500 hover:bg-maroon-600 py-4 rounded-xl font-bold transition-all shadow-lg shadow-maroon-500/10 font-sans"
           >
             Quiero ser socio ahora
           </a>

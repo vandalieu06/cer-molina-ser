@@ -9,25 +9,25 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <Layout>
-  <header class="bg-white py-16 flex justify-center border-b border-gray-100">
+  <header class="bg-cream py-16 flex justify-center border-b border-cream-dark">
     <div class="w-full xl:max-w-7xl px-6">
       <span
-        class="text-blue-400 font-semibold tracking-widest uppercase text-sm"
+        class="text-gold font-semibold tracking-widest uppercase text-sm font-sans"
       >
         Blog Oficial
       </span>
-      <h1 class="text-5xl font-bold text-gray-900 tracking-tight mt-2">
-        Actualidad <span class="text-blue-700 italic">y Campañas</span>
+      <h1 class="text-5xl font-bold text-maroon-900 tracking-tight mt-2 font-serif">
+        Actualidad <span class="text-maroon-500 italic">y Campañas</span>
       </h1>
     </div>
   </header>
 
-  <section class="py-20 flex justify-center bg-gray-50/50">
+  <section class="py-20 flex justify-center bg-cream">
     <div class="w-full xl:max-w-7xl px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {
           posts.map((post) => (
-            <article class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all group flex flex-col">
+            <article class="bg-white rounded-xl overflow-hidden shadow-sm border border-cream-dark hover:shadow-xl hover:shadow-maroon-500/5 transition-all group flex flex-col">
               <div class="aspect-video overflow-hidden">
                 <img
                   src={post.data.image.src}
@@ -37,23 +37,23 @@ const posts = (await getCollection("blog")).sort(
               </div>
               <div class="p-8 flex flex-col flex-1">
                 <div class="flex items-center gap-3 mb-4">
-                  <span class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span class="bg-maroon-100 text-maroon-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider font-sans">
                     {post.data.tag}
                   </span>
-                  <div class="flex items-center text-gray-400 text-sm">
+                  <div class="flex items-center text-neutral-light text-sm font-sans">
                     <Calendar size={14} class="mr-1" />
                     {post.data.date}
                   </div>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-blue-700 transition-colors">
+                <h2 class="text-2xl font-bold text-maroon-900 mb-4 leading-tight group-hover:text-maroon-500 transition-colors font-serif">
                   {post.data.title}
                 </h2>
-                <p class="text-gray-600 mb-8 line-clamp-3 italic">
+                <p class="text-neutral mb-8 line-clamp-3 italic font-sans">
                   {post.data.excerpt}
                 </p>
                 <a
                   href={`${import.meta.env.BASE_URL}/noticias/${post.slug}`}
-                  class="mt-auto flex items-center gap-2 text-blue-700 font-black uppercase text-xs tracking-[0.2em] hover:gap-4 transition-all"
+                  class="mt-auto flex items-center gap-2 text-maroon-500 font-black uppercase text-xs tracking-[0.2em] hover:gap-4 transition-all font-sans"
                 >
                   Leer noticia completa <ArrowRight size={16} />
                 </a>
