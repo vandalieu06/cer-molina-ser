@@ -20,12 +20,12 @@ const equipo = [
 ];
 ---
 
-<section class="py-20 bg-white flex justify-center">
+<section class="py-20 bg-cream flex justify-center">
   <div class="w-full xl:max-w-7xl px-6 text-center">
-    <h2 class="text-4xl font-bold text-gray-900 tracking-tight italic mb-2">
+    <h2 class="text-4xl font-bold text-maroon-900 tracking-tight italic mb-2 font-serif">
       El equipo
     </h2>
-    <p class="text-gray-600 mb-16 text-lg">
+    <p class="text-neutral mb-16 text-lg font-sans">
       Las caras detrás del proyecto CER Molina Segura
     </p>
 
@@ -34,15 +34,15 @@ const equipo = [
         equipo.map((user) => (
           <div class="group">
             <div class="relative mb-6 inline-block">
-              <div class="absolute inset-0 bg-blue-700 rounded-full translate-x-2 translate-y-2 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform" />
+              <div class="absolute inset-0 bg-maroon-600 rounded-full translate-x-2 translate-y-2 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform" />
               <img
                 src={user.img}
                 alt={user.nombre}
                 class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-lg"
               />
             </div>
-            <h3 class="text-2xl font-bold text-gray-900">{user.nombre}</h3>
-            <p class="text-blue-700 font-semibold uppercase text-sm tracking-widest mt-1">
+            <h3 class="text-2xl font-bold text-maroon-900 font-serif">{user.nombre}</h3>
+            <p class="text-maroon-500 font-semibold uppercase text-sm tracking-widest mt-1 font-sans">
               {user.rol}
             </p>
           </div>

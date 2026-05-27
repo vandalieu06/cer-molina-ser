@@ -16,11 +16,11 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={`${entry.data.title} | CER Molina Segura`}>
-  <article class="py-20 flex justify-center bg-white">
+  <article class="py-20 flex justify-center bg-cream">
     <div class="w-full xl:max-w-4xl px-6">
       <a
         href={`${import.meta.env.BASE_URL}/noticias`}
-        class="flex items-center gap-2 text-gray-400 hover:text-blue-700 transition-colors mb-12 font-bold uppercase text-xs tracking-widest"
+        class="flex items-center gap-2 text-neutral-light hover:text-maroon-500 transition-colors mb-12 font-bold uppercase text-xs tracking-widest font-sans"
       >
         <ArrowLeft size={16} /> Volver al blog
       </a>
@@ -28,23 +28,23 @@ const { Content } = await entry.render();
       <header class="mb-12">
         <div class="flex items-center gap-4 mb-6">
           <span
-            class="bg-blue-700 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest italic"
+            class="bg-maroon-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest italic font-sans"
           >
             {entry.data.tag}
           </span>
-          <div class="flex items-center text-gray-400 text-sm">
+          <div class="flex items-center text-neutral-light text-sm font-sans">
             <Calendar size={16} class="mr-2" />
             {entry.data.date}
           </div>
         </div>
         <h1
-          class="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight italic leading-[1.1]"
+          class="text-4xl md:text-6xl font-bold text-maroon-900 tracking-tight italic leading-[1.1] font-serif"
         >
           {entry.data.title}
         </h1>
       </header>
 
-      <div class="aspect-video mb-16 rounded-4xla overflow-hidden shadow-2xl">
+      <div class="aspect-video mb-16 rounded-xl overflow-hidden shadow-2xl shadow-maroon-500/5">
         <img
           src={entry.data.image.src}
           alt=""
@@ -54,9 +54,9 @@ const { Content } = await entry.render();
 
       <div
         class="prose prose-lg prose-blue max-w-none
-        prose-headings:italic prose-headings:font-bold prose-headings:tracking-tight
-        prose-p:text-gray-600 prose-p:leading-relaxed
-        prose-strong:text-gray-900"
+        prose-headings:italic prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-maroon-900
+        prose-p:text-neutral prose-p:leading-relaxed
+        prose-strong:text-maroon-900"
       >
         <Content />
       </div>

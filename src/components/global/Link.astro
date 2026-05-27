@@ -2,12 +2,12 @@
 const { url, text, isActive, isDesktop } = Astro.props;
 
 const baseClass = isDesktop
-  ? "text-sm font-bold transition-all hover:text-blue-700"
+  ? "text-sm font-bold transition-all font-sans hover:text-maroon-500"
   : "mobile-link text-2xl font-bold tracking-tight transition-colors cursor-pointer";
 
 const extraClass = isActive
-  ? "text-blue-700 underline underline-offset-8"
-  : "text-gray-600";
+  ? "text-maroon-500 underline underline-offset-8"
+  : "text-neutral";
 ---
 
 <li>

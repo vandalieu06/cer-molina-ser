@@ -19,21 +19,21 @@ const mainLinks = pages.slice(0, 5);
 const supportLinks = pages.slice(5);
 ---
 
-<footer class="bg-gray-950 text-gray-300 py-16">
+<footer class="bg-maroon-900 text-cream-dark py-16">
   <div class="w-full xl:max-w-7xl px-6 mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <div class="flex flex-col gap-4">
-        <h2 class="text-white text-xl font-bold tracking-tight mb-2">
+        <h2 class="text-white text-xl font-bold tracking-tight mb-2 font-serif">
           {pageTitle}
         </h2>
-        <p class="text-gray-400 leading-relaxed">
+        <p class="text-cream-dark/70 leading-relaxed font-sans">
           Dedicados al rescate, cuidado y adopción responsable de gatos en
           Molina de Segura. Tu ayuda hace posible su segunda oportunidad.
         </p>
         <div class="flex gap-4 mt-2">
           <a
             href="https://www.facebook.com/CERMolinadeSegura/"
-            class="hover:text-blue-400 transition-colors"
+            class="hover:text-gold transition-colors"
             aria-label="Facebook"
             target="_blank"
           >
@@ -41,7 +41,7 @@ const supportLinks = pages.slice(5);
           </a>
           <a
             href="https://www.instagram.com/cermolinadesegura/"
-            class="hover:text-pink-400 transition-colors"
+            class="hover:text-gold transition-colors"
             aria-label="Instagram"
             target="_blank"
           >
@@ -49,7 +49,7 @@ const supportLinks = pages.slice(5);
           </a>
           <a
             href="https://www.tiktok.com/@cermolinadesegura?is_from_webapp=1&sender_device=pc"
-            class="hover:text-sky-400 transition-colors"
+            class="hover:text-gold transition-colors"
             aria-label="Twitter"
             target="_blank"
           >
@@ -59,7 +59,7 @@ const supportLinks = pages.slice(5);
       </div>
 
       <div>
-        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">
+        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest font-sans">
           Sitio Web
         </h3>
         <ul class="flex flex-col gap-3">
@@ -68,7 +68,7 @@ const supportLinks = pages.slice(5);
               <li>
                 <a
                   href={getPath(page.url)}
-                  class="hover:text-white hover:translate-x-1 transition-all inline-block italic"
+                  class="hover:text-gold hover:translate-x-1 transition-all inline-block italic font-sans"
                 >
                   {page.title}
                 </a>
@@ -79,7 +79,7 @@ const supportLinks = pages.slice(5);
       </div>
 
       <div>
-        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">
+        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest font-sans">
           Cómo Ayudar
         </h3>
         <ul class="flex flex-col gap-3">
@@ -88,7 +88,7 @@ const supportLinks = pages.slice(5);
               <li>
                 <a
                   href={getPath(page.url)}
-                  class="hover:text-white hover:translate-x-1 transition-all inline-block italic"
+                  class="hover:text-gold hover:translate-x-1 transition-all inline-block italic font-sans"
                 >
                   {page.title}
                 </a>
@@ -99,25 +99,25 @@ const supportLinks = pages.slice(5);
       </div>
 
       <div>
-        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">
+        <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-widest font-sans">
           Contacto
         </h3>
         <ul class="flex flex-col gap-4">
           <li class="flex items-start gap-3">
-            <MapPin size={20} class="text-blue-500 shrink-0" />
-            <span>Molina de Segura, Murcia,<br />España</span>
+            <MapPin size={20} class="text-gold shrink-0" />
+            <span class="font-sans">Molina de Segura, Murcia,<br />España</span>
           </li>
           <li class="flex items-center gap-3">
-            <Mail size={20} class="text-blue-500 shrink-0" />
+            <Mail size={20} class="text-gold shrink-0" />
             <a
               href="mailto:info@cermolina.org"
-              class="hover:text-white transition-colors">info@cermolina.org</a
+              class="hover:text-gold transition-colors font-sans">info@cermolina.org</a
             >
           </li>
           <li class="mt-4">
             <a
               href={getPath("/donaciones")}
-              class="flex items-center justify-center gap-2 bg-white text-black py-3 px-4 rounded-md font-bold hover:bg-blue-500 hover:text-white transition-all"
+              class="flex items-center justify-center gap-2 bg-gold text-maroon-900 py-3 px-4 rounded-md font-bold hover:bg-gold-light hover:text-maroon-800 transition-all font-sans"
             >
               <Heart size={18} fill="currentColor" />
               Donar Ahora
@@ -128,15 +128,15 @@ const supportLinks = pages.slice(5);
     </div>
 
     <div
-      class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500"
+      class="border-t border-maroon-700 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-cream-dark/50"
     >
-      <p>
+      <p class="font-sans">
         © {new Date().getFullYear()}
         {pageTitle}. Todos los derechos reservados.
       </p>
       <div class="flex gap-6">
-        <a href="/privacidad" class="hover:text-gray-300">Aviso Legal</a>
-        <a href="/cookies" class="hover:text-gray-300">Cookies</a>
+        <a href="/privacidad" class="hover:text-gold font-sans">Aviso Legal</a>
+        <a href="/cookies" class="hover:text-gold font-sans">Cookies</a>
       </div>
     </div>
   </div>

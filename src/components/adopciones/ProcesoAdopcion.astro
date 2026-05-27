@@ -23,15 +23,15 @@ const pasos = [
 ];
 ---
 
-<section class="py-20 bg-gray-50 flex justify-center border-t border-gray-100">
+<section class="py-20 bg-cream flex justify-center border-t border-cream-dark">
   <div class="w-full xl:max-w-7xl px-6">
     <div class="mb-16">
       <h2
-        class="text-3xl md:text-4xl font-bold text-gray-900 italic tracking-tight"
+        class="text-3xl md:text-4xl font-bold text-maroon-900 italic tracking-tight font-serif"
       >
         El camino hacia su hogar
       </h2>
-      <p class="text-gray-600 mt-2 text-lg">
+      <p class="text-neutral mt-2 text-lg font-sans">
         Un proceso transparente para asegurar el bienestar de todos.
       </p>
     </div>
@@ -39,18 +39,18 @@ const pasos = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {
         pasos.map((paso) => (
-          <div class="bg-white p-8 rounded-2xl border border-gray-200 relative overflow-hidden group">
-            <span class="absolute -right-4 -top-4 text-8xl font-black text-gray-50 group-hover:text-blue-50 transition-colors">
+          <div class="bg-white p-8 rounded-2xl border border-cream-dark relative overflow-hidden group">
+            <span class="absolute -right-4 -top-4 text-8xl font-black text-cream group-hover:text-maroon-50 transition-colors">
               {paso.num}
             </span>
             <div class="relative z-10">
-              <div class="w-14 h-14 bg-blue-700 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+              <div class="w-14 h-14 bg-maroon-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-maroon-500/10">
                 <paso.icon size={30} />
               </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              <h3 class="text-2xl font-bold text-maroon-900 mb-4 font-serif">
                 {paso.title}
               </h3>
-              <p class="text-gray-600 leading-relaxed">{paso.desc}</p>
+              <p class="text-neutral leading-relaxed font-sans">{paso.desc}</p>
             </div>
           </div>
         ))

@@ -4,7 +4,7 @@ import { Menu, X } from "@lucide/astro";
 import Link from "@components/global/Link.astro";
 import { pages } from "@data/pages";
 import { getPath } from "@utils/paths";
-import imglogo from "@assets/logo.jpg";
+import imglogo from "@assets/logo.png";
 
 interface Page {
   title: string;
@@ -15,7 +15,7 @@ const { pathname } = Astro.url;
 const normalizedPathname = pathname.replace(/\/$/, "");
 ---
 
-<header class="py-1 flex justify-center relative bg-white">
+<header class="py-1 flex justify-center relative bg-cream">
   <div class="w-full xl:max-w-7xl px-6 flex justify-between items-center">
     <!-- Logo -->
     <div class="z-50">
@@ -48,7 +48,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
     <button
       id="menu-toggle"
       aria-label="Abrir menú"
-      class="lg:hidden z-50 p-2 focus:outline-none group text-gray-900"
+      class="lg:hidden z-50 p-2 focus:outline-none group text-maroon-900"
     >
       <div class="relative w-6 h-6">
         <div
@@ -69,7 +69,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
     <!-- Menú Móvil Fullscreen -->
     <div
       id="mobile-menu"
-      class="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none -translate-y-2.5"
+      class="fixed inset-0 bg-cream/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out opacity-0 pointer-events-none -translate-y-2.5"
     >
       <nav class="text-center overflow-y-auto max-h-screen py-20">
         <ul class="flex flex-col gap-8">

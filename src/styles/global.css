@@ -1,8 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-maroon-100: #fce8e8; /* Para fondos de iconos */
-  --color-maroon-400: #a62626; /* Para etiquetas o texto destacado */
-  --color-maroon-500: #800000; /* Tu granate principal */
-  --color-maroon-900: #4a0404; /* Tu granate oscuro */
+  --font-sans: "Hanken Grotesk", sans-serif;
+  --font-serif: "Libre Caslon Text", serif;
+
+  --color-cream: #f9f7f2;
+  --color-cream-dark: #ebe7df;
+
+  --color-gold: #d4af37;
+  --color-gold-light: #f0e3b0;
+
+  --color-neutral: #4a4a4a;
+  --color-neutral-light: #6b6b6b;
+
+  --color-maroon-50: #fdf2f0;
+  --color-maroon-100: #fce8e8;
+  --color-maroon-200: #f5c8c8;
+  --color-maroon-300: #e09090;
+  --color-maroon-400: #a62626;
+  --color-maroon-500: #800000;
+  --color-maroon-600: #5c0000;
+  --color-maroon-700: #410000;
+  --color-maroon-800: #2e0000;
+  --color-maroon-900: #4a0404;
 }

@@ -20,15 +20,15 @@ const pasos = [
 ];
 ---
 
-<section class="py-20 bg-gray-50 flex justify-center border-t border-gray-100">
+<section class="py-20 bg-cream flex justify-center border-t border-cream-dark">
   <div class="w-full xl:max-w-7xl px-6">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <h2
-        class="text-3xl md:text-4xl font-bold text-gray-900 italic tracking-tight mb-4"
+        class="text-3xl md:text-4xl font-bold text-maroon-900 italic tracking-tight mb-4 font-serif"
       >
         ¿Conoces una colonia sin registrar?
       </h2>
-      <p class="text-gray-600 text-lg">
+      <p class="text-neutral text-lg font-sans">
         El registro es el primer paso para proteger a los gatos y obtener el
         carnet oficial de alimentador/a.
       </p>
@@ -37,14 +37,14 @@ const pasos = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
       {
         pasos.map((paso, index) => (
-          <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm relative z-10">
-            <div class="w-14 h-14 bg-blue-700 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-100">
+          <div class="bg-white p-8 rounded-2xl border border-cream-dark shadow-sm relative z-10">
+            <div class="w-14 h-14 bg-maroon-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-maroon-500/10">
               <paso.icon size={28} />
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
+            <h3 class="text-xl font-bold text-maroon-900 mb-2 font-serif">
               {index + 1}. {paso.title}
             </h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{paso.desc}</p>
+            <p class="text-neutral text-sm leading-relaxed font-sans">{paso.desc}</p>
           </div>
         ))
       }
@@ -53,7 +53,7 @@ const pasos = [
     <div class="mt-16 flex justify-center">
       <a
         href="/recursos"
-        class="group flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl"
+        class="group flex items-center gap-3 px-8 py-4 bg-maroon-500 text-white font-bold rounded-2xl hover:bg-maroon-600 transition-all shadow-xl font-sans"
       >
         Descargar modelo de registro
         <ArrowRight
