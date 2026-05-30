@@ -1,15 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import { Menu, X } from "@lucide/astro";
+import { ChevronDown, Menu, X } from "@lucide/astro";
 import Link from "@components/global/Link.astro";
-import { pages } from "@data/pages";
+import { pages, type Page } from "@data/pages";
 import { getPath } from "@utils/paths";
 import imglogo from "@assets/logo.png";
-
-interface Page {
-  title: string;
-  url: string;
-}
 
 const { pathname } = Astro.url;
 const normalizedPathname = pathname.replace(/\/$/, "");
@@ -31,6 +26,45 @@ const normalizedPathname = pathname.replace(/\/$/, "");
           pages.map((page: Page) => {
             const isActive =
               normalizedPathname === getPath(page.url).replace(/\/$/, "");
+            if (page.children) {
+              const hasActiveChild = page.children.some(
+                (child) =>
+                  normalizedPathname === getPath(child.url).replace(/\/$/, ""),
+              );
+              return (
+                <li class="relative group">
+                  <button
+                    class={`flex items-center gap-1 text-sm font-bold transition-all font-sans hover:text-maroon-500 cursor-pointer ${
+                      hasActiveChild ? "text-maroon-500" : "text-neutral"
+                    }`}
+                  >
+                    {page.title}
+                    <ChevronDown
+                      class="w-4 h-4 transition-transform group-hover:rotate-180"
+                    />
+                  </button>
+                  <div class="absolute top-full left-0 mt-2 bg-cream rounded-xl shadow-lg border border-maroon-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-44 py-2 z-50">
+                    {page.children.map((child) => {
+                      const isChildActive =
+                        normalizedPathname ===
+                        getPath(child.url).replace(/\/$/, "");
+                      return (
+                        <a
+                          href={getPath(child.url)}
+                          class={`block px-4 py-2 text-sm font-sans transition-colors ${
+                            isChildActive
+                              ? "text-maroon-500 bg-maroon-50 font-bold"
+                              : "text-neutral hover:text-maroon-500 hover:bg-maroon-50"
+                          }`}
+                        >
+                          {child.title}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </li>
+              );
+            }
             return (
               <Link
                 url={getPath(page.url)}
@@ -77,6 +111,47 @@ const normalizedPathname = pathname.replace(/\/$/, "");
             pages.map((page: Page) => {
               const isActive =
                 normalizedPathname === getPath(page.url).replace(/\/$/, "");
+              if (page.children) {
+                const hasActiveChild = page.children.some(
+                  (child) =>
+                    normalizedPathname ===
+                    getPath(child.url).replace(/\/$/, ""),
+                );
+                return (
+                  <li>
+                    <button
+                      class={`flex items-center justify-center gap-2 text-2xl font-bold tracking-tight transition-colors cursor-pointer w-full ${
+                        hasActiveChild ? "text-maroon-500" : "text-neutral"
+                      }`}
+                      data-submenu-toggle
+                    >
+                      {page.title}
+                      <ChevronDown class="w-5 h-5 transition-transform" />
+                    </button>
+                    <ul class="mt-4 space-y-4 hidden" data-submenu>
+                      {page.children.map((child) => {
+                        const isChildActive =
+                          normalizedPathname ===
+                          getPath(child.url).replace(/\/$/, "");
+                        return (
+                          <li>
+                            <a
+                              href={getPath(child.url)}
+                              class={`mobile-link text-lg font-bold tracking-tight transition-colors cursor-pointer ${
+                                isChildActive
+                                  ? "text-maroon-500"
+                                  : "text-neutral"
+                              }`}
+                            >
+                              {child.title}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </li>
+                );
+              }
               return (
                 <Link
                   url={getPath(page.url)}
@@ -93,7 +168,6 @@ const normalizedPathname = pathname.replace(/\/$/, "");
   </div>
 </header>
 
-<!-- Funcionalidad Hedaer Menu Hamburger -->
 <script>
   const btn = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
@@ -143,5 +217,17 @@ const normalizedPathname = pathname.replace(/\/$/, "");
   btn?.addEventListener("click", toggleMenu);
   mobileLinks.forEach((link) => {
     link.addEventListener("click", toggleMenu);
+  });
+
+  document.querySelectorAll("[data-submenu-toggle]").forEach((toggleBtn) => {
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const submenu = toggleBtn.nextElementSibling;
+      if (submenu?.hasAttribute("data-submenu")) {
+        submenu.classList.toggle("hidden");
+        const chevron = toggleBtn.querySelector(".lucide-chevron-down");
+        chevron?.classList.toggle("rotate-180");
+      }
+    });
   });
 </script>

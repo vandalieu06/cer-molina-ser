@@ -1,0 +1,68 @@
+---
+import Layout from "@layouts/Layout.astro";
+import GaleriaGatos from "@components/adopciones/GaleriaGatos.astro";
+
+interface ImageData {
+  src: string;
+  alt: string;
+}
+
+const imageModules = import.meta.glob(
+  "/src/assets/fichas_gatos/**/*.{png,jpg,jpeg,PNG,JPG,JPEG}",
+  { eager: true },
+);
+
+function categorize(prefix: string): ImageData[] {
+  return Object.entries(imageModules)
+    .filter(([path]) => path.includes(`/${prefix}/`))
+    .map(([path, mod]) => {
+      const filename = path.split("/").pop() || "";
+      const name = filename
+        .replace(/\.\w+$/, "")
+        .replace(/\(.*?\)/g, "")
+        .replace(/\s+(ADOPTADO|ADOPTADA)/gi, "")
+        .trim();
+      return {
+        src: (mod as any).default?.src || (mod as any).default,
+        alt: name,
+      };
+    })
+    .sort((a, b) => a.alt.localeCompare(b.alt));
+}
+
+const enAdopcion = categorize("en_adopcion");
+const adoptados = categorize("adoptados");
+const fallecidos = categorize("fallecidos_desaparecidos");
+---
+
+<Layout>
+  <section class="py-24 bg-maroon-900 text-cream text-center">
+    <div class="w-full xl:max-w-7xl px-6 mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+        Gatos en adopción
+      </h1>
+      <p class="text-lg text-cream-dark font-sans max-w-2xl mx-auto">
+        Conoce a todos los gatos que han pasado por CER Molina Segura
+      </p>
+    </div>
+  </section>
+
+  <GaleriaGatos
+    images={enAdopcion}
+    titulo="Gatos en Adopción"
+    subtitulo={`${enAdopcion.length} gatos buscando un hogar`}
+  />
+
+  <GaleriaGatos
+    images={adoptados}
+    titulo="Gatos Adoptados"
+    subtitulo={`${adoptados.length} gatos encontraron su familia`}
+    bgClass="bg-cream"
+  />
+
+  <GaleriaGatos
+    images={fallecidos}
+    titulo="Fallecidos / Desaparecidos"
+    subtitulo={`${fallecidos.length} gatos`}
+  />
+</Layout>
