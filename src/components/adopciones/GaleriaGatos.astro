@@ -1,0 +1,100 @@
+---
+export interface Props {
+  images: { src: string; alt: string }[];
+  titulo: string;
+  subtitulo?: string;
+  bgClass?: string;
+}
+
+const { images, titulo, subtitulo, bgClass = "" } = Astro.props;
+---
+
+<section class={`py-20 ${bgClass}`}>
+  <div class="w-full xl:max-w-7xl px-6 mx-auto">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-maroon-900 italic mb-2 font-serif"
+    >
+      {titulo}
+    </h2>
+    {subtitulo && (
+      <p class="text-neutral-light font-sans mb-10">{subtitulo}</p>
+    )}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {images.map((img) => (
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <button
+            class="w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-maroon-500/50"
+            data-lightbox-src={img.src}
+            data-lightbox-alt={img.alt}
+            aria-label={`Ver imagen ampliada de ${img.alt}`}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="w-full h-80 object-contain p-4"
+              loading="lazy"
+            />
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const lightboxTriggers = document.querySelectorAll("[data-lightbox-src]");
+  let lightboxEl = null;
+
+  function openLightbox(src, alt) {
+    closeLightbox();
+    lightboxEl = document.createElement("div");
+    lightboxEl.className =
+      "fixed inset-0 z-50 flex items-center justify-center bg-black/80";
+    lightboxEl.setAttribute("role", "dialog");
+    lightboxEl.setAttribute("aria-label", "Vista ampliada de la imagen");
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className =
+      "absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center text-2xl hover:bg-white/40 transition-colors z-10";
+    closeBtn.innerHTML = "\u00d7";
+    closeBtn.setAttribute("aria-label", "Cerrar");
+    closeBtn.addEventListener("click", closeLightbox);
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = alt;
+    img.className = "max-w-[95vw] max-h-[95vh] object-contain rounded-2xl shadow-2xl";
+
+    lightboxEl.appendChild(closeBtn);
+    lightboxEl.appendChild(img);
+    document.body.appendChild(lightboxEl);
+    document.body.style.overflow = "hidden";
+
+    lightboxEl.addEventListener("click", (e) => {
+      if (e.target === lightboxEl) closeLightbox();
+    });
+
+    document.addEventListener("keydown", handleEsc);
+  }
+
+  function closeLightbox() {
+    if (lightboxEl) {
+      lightboxEl.remove();
+      lightboxEl = null;
+      document.body.style.overflow = "";
+    }
+    document.removeEventListener("keydown", handleEsc);
+  }
+
+  function handleEsc(e) {
+    if (e.key === "Escape") closeLightbox();
+  }
+
+  lightboxTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const src = trigger.getAttribute("data-lightbox-src");
+      const alt = trigger.getAttribute("data-lightbox-alt") || "";
+      if (src) openLightbox(src, alt);
+    });
+  });
+</script>

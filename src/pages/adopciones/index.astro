@@ -4,11 +4,31 @@ import AdoptarAhora from "@components/adopciones/AdoptarAhora.astro";
 import ProcesoAdopcion from "@components/adopciones/ProcesoAdopcion.astro";
 import FinalesFelices from "@components/adopciones/FinalesFelices.astro";
 import FormularioAdopcion from "@components/adopciones/FormularioAdopcion.astro";
+import { getPath } from "@utils/paths";
 ---
 
 <Layout>
   <AdoptarAhora />
   <ProcesoAdopcion />
   <FinalesFelices />
+  <section class="py-20 bg-white border-y border-cream-dark flex justify-center">
+    <div class="w-full xl:max-w-7xl px-6 text-center">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-maroon-900 italic mb-4 font-serif"
+      >
+        Conoce a nuestros gatos
+      </h2>
+      <p class="text-neutral font-sans mb-8 max-w-xl mx-auto">
+        Todos ellos están esperando una segunda oportunidad. Mira sus fichas y
+        decide si quieres adoptar.
+      </p>
+      <a
+        href={getPath("/adopciones/gatos")}
+        class="inline-block bg-maroon-500 text-cream px-8 py-3 rounded-xl font-bold font-sans hover:bg-maroon-600 transition-colors"
+      >
+        Ver todos los gatos &rarr;
+      </a>
+    </div>
+  </section>
   <FormularioAdopcion />
 </Layout>

@@ -1,5 +1,6 @@
 ---
 import bgAdopta from "@assets/bg-adopta.jpg";
+import { getPath } from "@utils/paths";
 ---
 
 <section
@@ -19,7 +20,7 @@ import bgAdopta from "@assets/bg-adopta.jpg";
       Todos se entregan con contrato, microchip y compromiso de esterilización.
     </p>
     <a
-      href="/adopciones/gatos"
+      href={getPath("/adopciones/gatos")}
       class="px-8 py-4 bg-maroon-500 hover:bg-maroon-600 text-white font-bold rounded-xl transition-all transform hover:scale-105 shadow-xl font-sans"
     >
       Ver gatos en adopción
