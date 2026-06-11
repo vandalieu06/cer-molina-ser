@@ -15,13 +15,13 @@ const normalizedPathname = pathname.replace(/\/$/, "");
     <!-- Logo -->
     <div class="z-50">
       <a href={getPath("/")}>
-        <Image src={imglogo} alt="Logo de web" class="w-25" />
+        <Image src={imglogo} alt="Logo de Cer Molina de Segura" class="w-25" loading="eager" />
       </a>
     </div>
 
     <!-- Navegación Desktop / Tablet -->
     <nav class="hidden lg:flex items-center">
-      <ul class="flex gap-x-6">
+      <ul class="flex items-center gap-x-6">
         {
           pages.map((page: Page) => {
             const isActive =
@@ -39,9 +39,7 @@ const normalizedPathname = pathname.replace(/\/$/, "");
                     }`}
                   >
                     {page.title}
-                    <ChevronDown
-                      class="w-4 h-4 transition-transform group-hover:rotate-180"
-                    />
+                    <ChevronDown class="w-4 h-4 transition-transform group-hover:rotate-180" />
                   </button>
                   <div class="absolute top-full left-0 mt-2 bg-cream rounded-xl shadow-lg border border-maroon-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-44 py-2 z-50">
                     {page.children.map((child) => {
