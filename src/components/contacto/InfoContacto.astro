@@ -3,33 +3,26 @@ import {
   Mail,
   Instagram,
   Facebook,
-  Twitter,
-  MessageCircle,
+  Music2,
 } from "@lucide/astro";
 
 const redes = [
   {
-    nombre: "Instagram",
-    icon: Instagram,
-    href: "#",
-    color: "hover:text-gold",
-  },
-  {
     nombre: "Facebook",
     icon: Facebook,
-    href: "#",
+    href: "https://www.facebook.com/CERMolinadeSegura/",
     color: "hover:text-gold",
   },
   {
-    nombre: "X (Twitter)",
-    icon: Twitter,
-    href: "#",
+    nombre: "Instagram",
+    icon: Instagram,
+    href: "https://www.instagram.com/cermolinadesegura/",
     color: "hover:text-gold",
   },
   {
-    nombre: "WhatsApp",
-    icon: MessageCircle,
-    href: "#",
+    nombre: "TikTok",
+    icon: Music2,
+    href: "https://www.tiktok.com/@cermolinadesegura?is_from_webapp=1&sender_device=pc",
     color: "hover:text-gold",
   },
 ];
@@ -85,6 +78,8 @@ const redes = [
             href={red.href}
             class={`w-12 h-12 bg-white border border-cream-dark rounded-xl flex items-center justify-center text-neutral-light transition-all shadow-sm ${red.color} hover:border-current hover:scale-110`}
             aria-label={red.nombre}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <red.icon size={24} />
           </a>

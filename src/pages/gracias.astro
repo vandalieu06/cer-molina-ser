@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getPath } from "@utils/paths";
+---
+
+<Layout>
+  <section class="py-32 flex justify-center bg-cream">
+    <div class="w-full xl:max-w-4xl px-6 text-center">
+      <div class="bg-white rounded-2xl p-12 md:p-16 shadow-2xl shadow-maroon-500/5 border border-cream-dark">
+        <div class="text-6xl mb-6">&#10003;</div>
+        <h1 class="text-4xl md:text-5xl font-bold text-maroon-900 italic mb-4 font-serif">
+          ¡Gracias por contactarnos!
+        </h1>
+        <p class="text-neutral text-lg font-sans mb-8 max-w-lg mx-auto">
+          Hemos recibido tu mensaje. Te responderemos lo antes posible.
+        </p>
+        <a
+          href={getPath("/")}
+          class="inline-block bg-maroon-500 hover:bg-maroon-600 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg shadow-maroon-500/10 uppercase tracking-widest text-sm font-sans"
+        >
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
