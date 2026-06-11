@@ -3,7 +3,7 @@ title: "Campaña de Invierno: Refugios que salvan vidas"
 date: "2025-12-24"
 tag: "Campaña"
 excerpt: "Buscamos mantas térmicas y materiales aislantes para proteger nuestras colonias felinas de las heladas nocturnas en Molina de Segura."
-image: "../../assets/cat-1.jpg"
+image: "../../assets/web/blog-sample-img.webp"
 ---
 El frío extremo de este diciembre está poniendo en riesgo a los gatos más vulnerables de nuestras colonias. Desde **CER Molina Segura** lanzamos una petición urgente de ayuda.
 

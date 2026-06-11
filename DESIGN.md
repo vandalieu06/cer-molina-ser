@@ -50,44 +50,44 @@ colors:
   surface-variant: '#e4e2e2'
 typography:
   display-lg:
-    fontFamily: Libre Caslon Text
+    fontFamily: Montserrat
     fontSize: 48px
     fontWeight: '700'
     lineHeight: 56px
     letterSpacing: -0.02em
   headline-lg:
-    fontFamily: Libre Caslon Text
+    fontFamily: Montserrat
     fontSize: 32px
     fontWeight: '600'
     lineHeight: 40px
   headline-lg-mobile:
-    fontFamily: Libre Caslon Text
+    fontFamily: Montserrat
     fontSize: 28px
     fontWeight: '600'
     lineHeight: 36px
   headline-md:
-    fontFamily: Libre Caslon Text
+    fontFamily: Montserrat
     fontSize: 24px
     fontWeight: '600'
     lineHeight: 32px
   body-lg:
-    fontFamily: Hanken Grotesk
+    fontFamily: Montserrat
     fontSize: 18px
     fontWeight: '400'
     lineHeight: 28px
   body-md:
-    fontFamily: Hanken Grotesk
+    fontFamily: Montserrat
     fontSize: 16px
     fontWeight: '400'
     lineHeight: 24px
   label-md:
-    fontFamily: Hanken Grotesk
+    fontFamily: Montserrat
     fontSize: 14px
     fontWeight: '600'
     lineHeight: 20px
     letterSpacing: 0.05em
   caption:
-    fontFamily: Hanken Grotesk
+    fontFamily: Montserrat
     fontSize: 12px
     fontWeight: '400'
     lineHeight: 16px
@@ -127,11 +127,7 @@ The palette is dominated by **Granate (Deep Maroon)**, used strategically for pr
 
 ## Typography
 
-This design system uses a high-contrast typographic pairing to evoke an editorial feel. 
-
-**Libre Caslon Text** is used for all headlines. Its classic serif proportions provide the "high-end" authority required by the brand. Headlines should use tighter letter-spacing to feel more cohesive.
-
-**Hanken Grotesk** serves as the functional workhorse for body text, labels, and UI elements. It is a clean, sharp sans-serif that ensures high readability on mobile screens. Labels are set in semi-bold with slight tracking and uppercase styling to distinguish them from body content.
+**Montserrat** is the sole typeface used throughout the design. Its geometric and versatile character works equally well for headlines, body text, labels, and UI elements. By using a range of weights (light for body, semibold for labels, bold for headlines) a clear hierarchy is achieved without needing a secondary font. Headlines should use tighter letter-spacing to feel more cohesive. Labels are set in semi-bold with slight tracking and uppercase styling to distinguish them from body content.
 
 ## Layout & Spacing
 
