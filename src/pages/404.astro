@@ -1,0 +1,67 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import { Cat, ArrowLeft, House } from "@lucide/astro";
+import { getPath } from "@utils/paths";
+import bgImage from "@assets/web/404.webp";
+---
+
+<Layout title="Página no encontrada (404) | CER Molina Segura">
+  <section class="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+    <Picture
+      src={bgImage}
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      widths={[480, 768, 1024, 1440, 1920]}
+      sizes="100vw"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to right, rgba(74,4,4,0.94) 0%, rgba(74,4,4,0.72) 55%, rgba(74,4,4,0.38) 100%);"
+    >
+    </div>
+
+    <div class="relative z-10 w-full xl:max-w-3xl px-6 py-24 text-center">
+      <div class="mb-6 flex justify-center text-gold">
+        <Cat size={56} stroke-width={1.5} />
+      </div>
+
+      <span class="text-gold font-semibold tracking-widest uppercase text-sm font-sans">
+        Error 404
+      </span>
+
+      <h1
+        class="mt-4 text-5xl md:text-7xl font-bold text-white tracking-tight italic font-serif"
+      >
+        Esta página se ha <span class="text-gold not-italic">escapado</span>
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-xl text-lg text-cream-dark font-sans">
+        Parece que la página que buscas no existe o ha cambiado de sitio. Como
+        nuestros gatos, a veces se esconden donde menos lo esperas.
+      </p>
+
+      <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href={getPath("/")}
+          class="inline-flex items-center justify-center gap-2 rounded-xl bg-maroon-500 px-8 py-4 font-bold uppercase tracking-widest text-white shadow-lg shadow-maroon-900/30 transition-all hover:bg-maroon-600 font-sans"
+        >
+          <House size={18} />
+          Volver al inicio
+        </a>
+        <a
+          href={getPath("/adopciones/gatos")}
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-8 py-4 font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-all hover:bg-white/20 font-sans"
+        >
+          <ArrowLeft size={18} />
+          Ver gatos en adopción
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
