@@ -43,9 +43,9 @@ const { images, titulo, subtitulo, bgClass = "" } = Astro.props;
 
 <script>
   const lightboxTriggers = document.querySelectorAll("[data-lightbox-src]");
-  let lightboxEl = null;
+  let lightboxEl: HTMLDivElement | null = null;
 
-  function openLightbox(src, alt) {
+  function openLightbox(src: string, alt: string) {
     closeLightbox();
     lightboxEl = document.createElement("div");
     lightboxEl.className =
@@ -70,7 +70,7 @@ const { images, titulo, subtitulo, bgClass = "" } = Astro.props;
     document.body.appendChild(lightboxEl);
     document.body.style.overflow = "hidden";
 
-    lightboxEl.addEventListener("click", (e) => {
+    lightboxEl.addEventListener("click", (e: MouseEvent) => {
       if (e.target === lightboxEl) closeLightbox();
     });
 
@@ -86,7 +86,7 @@ const { images, titulo, subtitulo, bgClass = "" } = Astro.props;
     document.removeEventListener("keydown", handleEsc);
   }
 
-  function handleEsc(e) {
+  function handleEsc(e: KeyboardEvent) {
     if (e.key === "Escape") closeLightbox();
   }
 
