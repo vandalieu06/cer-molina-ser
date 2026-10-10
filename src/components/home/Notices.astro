@@ -63,7 +63,7 @@ const posts = (await getCollection("blog"))
                 {post.data.excerpt}
               </p>
               <a
-                href={getPath(`/noticias/${post.slug}`)}
+                href={getPath(`/noticias/${post.id}`)}
                 class="mt-auto flex items-center gap-2 text-maroon-500 font-black uppercase text-xs tracking-[0.2em] hover:gap-4 transition-all font-sans"
               >
                 Leer noticia completa
