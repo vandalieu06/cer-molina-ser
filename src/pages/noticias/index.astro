@@ -52,7 +52,7 @@ const posts = (await getCollection("blog")).sort(
                   {post.data.excerpt}
                 </p>
                 <a
-                  href={`${import.meta.env.BASE_URL}/noticias/${post.slug}`}
+                  href={`${import.meta.env.BASE_URL}/noticias/${post.id}`}
                   class="mt-auto flex items-center gap-2 text-maroon-500 font-black uppercase text-xs tracking-[0.2em] hover:gap-4 transition-all font-sans"
                 >
                   Leer noticia completa <ArrowRight size={16} />
