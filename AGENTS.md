@@ -50,6 +50,13 @@ GitHub Pages subpath `/cer-molina-ser`.
   `--font-serif`). Edit tokens there.
 - `docs/structure.md` is the site's content outline/spec. `.agents/` is gitignored.
 
+## Git workflow
+- `main` = producción: **solo aquí** se despliega (GitHub Pages en push a `main`).
+- `develop` = integración: las ramas de trabajo (`feat/…`, `fix/…`, `chore/…`, `docs/…`) se crean
+  desde `develop` y se fusionan ahí por PR.
+- Publicar = PR `develop` → `main` (dispara el deploy).
+- No commitear directamente a `main`.
+
 ## Flujo Spec-Driven Development (SDD) — Obligatorio
 
 1. **Regla de oro:** prohibido crear o modificar código fuente sin una spec APROBADA por el
