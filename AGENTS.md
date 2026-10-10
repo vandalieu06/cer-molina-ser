@@ -48,7 +48,17 @@ GitHub Pages subpath `/cer-molina-ser`.
 - **Design system**: `DESIGN.md` is the prose spec; the executable truth is the `@theme` block in
   `src/styles/global.css` (maroon/cream/gold palette; Montserrat is both `--font-sans` and
   `--font-serif`). Edit tokens there.
+- **Imágenes de fondo**: optimízalas antes de commitear con ImageMagick a webp
+  (`magick in.jpg -resize 1920x -strip -quality 80 out.webp`) y sírvelas con `<Picture>` de
+  `astro:assets` (`formats`/`widths`), no como CSS `background`.
 - `docs/structure.md` is the site's content outline/spec. `.agents/` is gitignored.
+
+## Git workflow
+- `main` = producción: **solo aquí** se despliega (GitHub Pages en push a `main`).
+- `develop` = integración: las ramas de trabajo (`feat/…`, `fix/…`, `chore/…`, `docs/…`) se crean
+  desde `develop` y se fusionan ahí por PR.
+- Publicar = PR `develop` → `main` (dispara el deploy).
+- No commitear directamente a `main`.
 
 ## Flujo Spec-Driven Development (SDD) — Obligatorio
 
