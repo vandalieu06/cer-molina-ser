@@ -1,5 +1,6 @@
 ---
 import bgImageWelcome from "@assets/web/home-hero.webp";
+import { getPath } from "@utils/paths";
 const alt =
   "Foto de Batitay Japheth: https://www.pexels.com/es-es/foto/animal-mascota-cabeza-gato-16679036/";
 ---
@@ -22,7 +23,7 @@ const alt =
       Buscamos a los mejores adoptantes del mundo
     </p>
     <a
-      href="/adopciones"
+      href={getPath("/adopciones")}
       class="w-max px-5 py-2 text-white bg-maroon-500 hover:bg-maroon-600 font-medium rounded-lg cursor-pointer transition-colors duration-300 ease-in-out font-sans"
       type="button"
     >
