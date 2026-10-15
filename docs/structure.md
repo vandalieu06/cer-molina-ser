@@ -38,7 +38,7 @@
 
 7.Donaciones
 
-- Formas de donar (Bizum, transferencia, teaming).
+- Formas de donar (transferencia, teaming).
 - Donaciones de material (pienso, medicación…).
 - Apadrinamiento de colonias o gatos.
 - Calendario de eventos
