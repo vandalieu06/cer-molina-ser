@@ -1,5 +1,6 @@
 ---
 import { CircleCheck, Heart } from "@lucide/astro";
+import { MEMBERSHIP_FORM_URL } from "@data/links";
 
 const beneficios = [
   "Descuentos en clínicas veterinarias conveniadas.",
@@ -66,7 +67,9 @@ const beneficios = [
             el desamparo."
           </p>
           <a
-            href="#formulario-socio"
+            href={MEMBERSHIP_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             class="block w-full text-center bg-maroon-500 hover:bg-maroon-600 py-4 rounded-xl font-bold transition-all shadow-lg shadow-maroon-500/10 font-sans"
           >
             Quiero ser socio ahora
