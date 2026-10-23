@@ -34,10 +34,44 @@ Sitio web estático de **CER Molina Segura**, protectora de gatos sin ánimo de 
 
 No hay script de lint, test ni formato.
 
+## Despliegue con Docker
+
+La imagen es multi-stage: Node + pnpm compilan el sitio y `nginx:alpine` sirve `dist/` (sin Node en
+producción). Imagen resultante ~181 MB.
+
+```sh
+docker build -t cer-molina-ser .
+docker run --rm -p 8080:80 cer-molina-ser   # http://localhost:8080
+```
+
+En el contenedor el sitio se sirve siempre en la **raíz** (`BASE_PATH=/`), al revés que en GitHub
+Pages, que compila con `/cer-molina-ser` cuando no hay variables de entorno.
+
+| Variable | Tipo | Default | Uso |
+| :-- | :-- | :-- | :-- |
+| `BASE_PATH` | fijada en la imagen | `/` en Docker · `/cer-molina-ser` sin variable | Prefijo de todas las rutas |
+| `SITE_URL` | build arg | `https://vandalieu06.github.io` | Solo `Astro.site` (canonical/OG); hoy no se usa |
+
+No hay variables de runtime: `nginx` solo sirve ficheros.
+
+> El contenedor no sirve el sitio bajo un subpath: si necesitas `/cer-molina-ser/` en el VPS,
+> despliega Astro en ese subpath con nginx (`root` apuntando a un directorio con esa carpeta) o usa
+> un dominio propio.
+
+### Dokploy
+
+- **Application → Build Type: Dockerfile** (o un servicio **Compose** con el `docker-compose.yml`).
+- `Dockerfile Path`: `Dockerfile` · `Docker Context Path`: `.` · `Docker Build Stage`: *vacío*.
+- **No hay build args obligatorios**: la imagen ya compila con `BASE_PATH=/`. La pestaña de
+  variables de runtime no afecta (no llega al build).
+- Puerto del servicio: `80`. El dominio (incluidos los `*.sslip.io` que genera Dokploy) y el TLS los
+  gestiona Traefik; no publiques puertos al host.
+
 ## Estructura
 
 ```text
 /
+├── nginx/default.conf          # config de nginx dentro del contenedor
 ├── public/                     # assets estáticos servidos tal cual
 ├── specs/                      # specs del flujo SDD (por versión)
 ├── src
@@ -54,6 +88,8 @@ No hay script de lint, test ni formato.
 │   ├── styles/global.css       # tokens de diseño (@theme)
 │   └── utils/paths.ts          # helper getPath() para el subpath base
 ├── AGENTS.md                   # guía para agentes + flujo SDD
+├── Dockerfile                  # imagen de producción (Node + pnpm → nginx)
+├── docker-compose.yml          # despliegue en Dokploy / pruebas locales
 └── package.json
 ```
 

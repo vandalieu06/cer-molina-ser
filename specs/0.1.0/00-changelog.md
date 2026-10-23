@@ -7,3 +7,4 @@
 | 2026-10-10 | 03 | Página 404 personalizada con imagen de fondo optimizada (webp) |
 | 2026-10-15 | 04 | Donaciones: eliminar Bizum, IBAN y beneficiario reales de transferencia y enlace de apadrinamiento por correo |
 | 2026-10-15 | 05 | Unificar correo de contacto, enlazar formulario de socio y actualizar texto del footer |
+| 2026-10-23 | 06 | Dockerfile multi-stage (Node + pnpm → nginx) y `docker-compose.yml` para desplegar en Dokploy; `BASE_PATH`/`SITE_URL` configurables por entorno |
