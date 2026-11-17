@@ -50,7 +50,8 @@ GitHub Pages subpath `/cer-molina-ser`.
   `--font-serif`). Edit tokens there.
 - **Imágenes de fondo**: optimízalas antes de commitear con ImageMagick a webp
   (`magick in.jpg -resize 1920x -strip -quality 80 out.webp`) y sírvelas con `<Picture>` de
-  `astro:assets` (`formats`/`widths`), no como CSS `background`.
+  `astro:assets` (`formats`/`widths`, y `fallbackFormat="webp"`), no como CSS `background`.
+  Pipeline y estándar de nombres: `pnpm images:optimize`, ver `docs/images.md`.
 - `docs/structure.md` is the site's content outline/spec. `.agents/` is gitignored.
 
 ## Git workflow

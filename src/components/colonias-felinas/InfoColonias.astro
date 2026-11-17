@@ -1,6 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { Info, Heart, Users } from "@lucide/astro";
-import imgColonia from "@assets/colonia-felina.jpg";
+import imgColonia from "@assets/colonia-felina.webp";
 ---
 
 <section class="py-20 bg-cream flex justify-center">
@@ -11,9 +12,12 @@ import imgColonia from "@assets/colonia-felina.jpg";
           class="absolute -bottom-6 -right-6 w-full h-full border-2 border-maroon-500 rounded-2xl -z-10"
         >
         </div>
-        <img
-          src={imgColonia.src}
+        <Image
+          src={imgColonia}
           alt="Gatos en una colonia gestionada"
+          width={1200}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1024px) 560px, 90vw"
           class="rounded-2xl shadow-2xl shadow-maroon-500/5 object-cover aspect-square md:aspect-video lg:aspect-square"
         />
       </div>

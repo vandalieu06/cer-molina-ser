@@ -1,33 +1,48 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import GaleriaGatos from "@components/adopciones/GaleriaGatos.astro";
+import type { ImageMetadata } from "astro";
 
 interface ImageData {
-  src: string;
+  src: ImageMetadata;
   alt: string;
 }
 
-const imageModules = import.meta.glob(
-  "/src/assets/fichas_gatos/**/*.{png,jpg,jpeg,PNG,JPG,JPEG}",
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/fichas_gatos/**/*.webp",
   { eager: true },
 );
+
+// Nombres con acento que el slug del fichero no puede representar.
+const ACENTOS: Record<string, string> = {
+  ambar: "Ámbar",
+  felix: "Félix",
+  lia: "Lía",
+  lulu: "Lulú",
+  principe: "Príncipe",
+  tarzan: "Tarzán",
+};
+
+// slug → nombre visible: "ambar" → "Ámbar", "greta-2" → "Greta (2)"
+function prettyName(slug: string): string {
+  const dup = slug.match(/^(.*)-(\d+)$/);
+  const base = dup ? dup[1] : slug;
+  const nombre = ACENTOS[base] ?? base.charAt(0).toUpperCase() + base.slice(1);
+  return dup ? `${nombre} (${dup[2]})` : nombre;
+}
 
 function categorize(prefix: string): ImageData[] {
   return Object.entries(imageModules)
     .filter(([path]) => path.includes(`/${prefix}/`))
     .map(([path, mod]) => {
       const filename = path.split("/").pop() || "";
-      const name = filename
-        .replace(/\.\w+$/, "")
-        .replace(/\(.*?\)/g, "")
-        .replace(/\s+(ADOPTADO|ADOPTADA)/gi, "")
-        .trim();
+      const slug = filename.replace(/\.webp$/, "");
       return {
-        src: (mod as any).default?.src || (mod as any).default,
-        alt: name,
+        src: mod.default,
+        alt: prettyName(slug),
       };
     })
-    .sort((a, b) => a.alt.localeCompare(b.alt));
+    .sort((a, b) => a.alt.localeCompare(b.alt, "es"));
 }
 
 const enAdopcion = categorize("en_adopcion");

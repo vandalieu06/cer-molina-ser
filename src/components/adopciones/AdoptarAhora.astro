@@ -1,13 +1,27 @@
 ---
-import bgAdopta from "@assets/bg-adopta.jpg";
+import { Picture } from "astro:assets";
+import bgAdopta from "@assets/bg-adopta.webp";
 import { getPath } from "@utils/paths";
 ---
 
 <section
-  class="adopta-now-section min-h-[40vh] py-16 flex items-center justify-center text-white"
+  class="relative isolate min-h-[40vh] py-16 flex items-center justify-center text-white overflow-hidden"
 >
+  <Picture
+    src={bgAdopta}
+    formats={["avif", "webp"]}
+    fallbackFormat="webp"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    alt=""
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 -z-10 bg-[#4f0000]/80"></div>
+
   <div
-    class="w-full xl:max-w-7xl px-6 flex flex-col items-center text-center gap-6"
+    class="relative z-10 w-full xl:max-w-7xl px-6 flex flex-col items-center text-center gap-6"
   >
     <span class="text-gold font-bold tracking-widest uppercase text-sm font-sans">
       Cambia una vida
@@ -28,13 +42,3 @@ import { getPath } from "@utils/paths";
   </div>
 </section>
 
-<style define:vars={{ bgUrl: `url(${bgAdopta.src})` }}>
-  .adopta-now-section {
-    background-image:
-      linear-gradient(to bottom, rgba(79, 0, 0, 0.8), rgba(79, 0, 0, 0.8)),
-      var(--bgUrl);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  }
-</style>
