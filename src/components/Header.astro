@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "@lucide/astro";
 import Link from "@components/global/Link.astro";
 import { pages, type Page } from "@data/pages";
 import { getPath } from "@utils/paths";
-import imglogo from "@assets/logo.png";
+import imglogo from "@assets/logo.webp";
 
 const { pathname } = Astro.url;
 const normalizedPathname = pathname.replace(/\/$/, "");
@@ -15,7 +15,15 @@ const normalizedPathname = pathname.replace(/\/$/, "");
     <!-- Logo -->
     <div class="z-50">
       <a href={getPath("/")}>
-        <Image src={imglogo} alt="Logo de Cer Molina de Segura" class="w-25" loading="eager" />
+        <Image
+          src={imglogo}
+          alt="Logo de Cer Molina de Segura"
+          width={200}
+          widths={[100, 200]}
+          sizes="100px"
+          class="w-25"
+          loading="eager"
+        />
       </a>
     </div>
 
