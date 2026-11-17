@@ -1,21 +1,22 @@
 ---
-import tmpPersonal from "@assets/tmp-personal-team.jpg";
+import { Image } from "astro:assets";
+import tmpPersonal from "@assets/tmp-personal-team.webp";
 
 const equipo = [
   {
     nombre: "María López",
     rol: "Coordinadora General",
-    img: tmpPersonal.src,
+    img: tmpPersonal,
   },
   {
     nombre: "Juan Pérez",
     rol: "Gestión de Colonias",
-    img: tmpPersonal.src,
+    img: tmpPersonal,
   },
   {
     nombre: "Ana Belén",
     rol: "Responsable Adopciones",
-    img: tmpPersonal.src,
+    img: tmpPersonal,
   },
 ];
 ---
@@ -35,9 +36,12 @@ const equipo = [
           <div class="group">
             <div class="relative mb-6 inline-block">
               <div class="absolute inset-0 bg-maroon-600 rounded-full translate-x-2 translate-y-2 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform" />
-              <img
+              <Image
                 src={user.img}
                 alt={user.nombre}
+                width={384}
+                widths={[192, 384]}
+                sizes="192px"
                 class="w-48 h-48 rounded-full object-cover border-4 border-white shadow-lg"
               />
             </div>
