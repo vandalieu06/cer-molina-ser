@@ -46,53 +46,72 @@ commits: solo se eliminan objetos que ninguna versión actual referencia.
 
 ## Proposed change
 
-**Principio**: se calcula la lista de blobs históricos "grandes" **que ya no están en `HEAD`** y
-se le pasa esa lista exacta a `git filter-repo --strip-blobs-with-ids`. Todo lo que exista en
-`HEAD` queda intacto por construcción, así que la purga no puede romper el build.
+**Prerrequisito (medido, no teórico)**: la purga solo libera espacio cuando **ninguna rama
+local** referencia los blobs antiguos. Con `main` todavía sin el commit de optimización, el
+análisis da **2 blobs / 0 MB**: los 192 originales siguen vivos en el árbol de `main` y
+strippearlos dejaría esa rama sin los ficheros que sus commits necesitan. Por eso el orden es:
+
+```
+07 y 08 en develop → PR y merge → release develop → main → purgar
+```
+
+**Automatizado**: `scripts/purge-history.sh` analiza y `--run` purga (con bundle previo). Los
+pasos manuales quedan documentados para entenderlo.
+
+**Principio**: se calcula la lista de blobs históricos "grandes" que **ya no están en ninguna
+rama local** y se le pasa esa lista exacta a `git filter-repo --strip-blobs-with-ids`. Todo lo
+que exista en una rama actual queda intacto por construcción, así que la purga no puede romper
+el build.
 
 ### 0. Redes de seguridad
 
 ```bash
 mkdir -p docs/cer-molina-cer/.backup
-git bundle create docs/cer-molina-cer/.backup/cer-pre-purge-2026-11-17.bundle --all
-cp -a .git /tmp/opencode/cer-dotgit-backup
+git bundle create docs/cer-molina-cer/.backup/cer-pre-purge-$(date +%F).bundle --all
+git bundle verify docs/cer-molina-cer/.backup/cer-pre-purge-$(date +%F).bundle
+cp -a .git /tmp/opencode/cer-dotgit-backup     # opcional, 428 MB
 ```
 
 ### 1. Herramienta
 
 ```bash
 uv tool install git-filter-repo
-git filter-repo --version        # vive en ~/.local/bin, ya en el PATH
+git-filter-repo --version
 ```
 
-### 2. Selección quirúrgica de blobs
+### 2. Análisis (sin modificar nada)
 
 ```bash
-# blobs > 100 KB en TODO el historial
-git rev-list --objects --all \
-  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
-  | awk '$1=="blob" && $3>102400 {print $2}' | sort -u > /tmp/big.txt
-
-# blobs vivos en HEAD (se conservan siempre)
-git ls-tree -r HEAD | awk '{print $3}' | sort -u > /tmp/head.txt
-
-# diferencia: históricos que ya no existen en el árbol actual
-comm -23 /tmp/big.txt /tmp/head.txt > /tmp/purge-blobs.txt
-wc -l /tmp/purge-blobs.txt      # esperado: ~110-120
+bash scripts/purge-history.sh
 ```
 
-Antes de ejecutar se revisa que **ningún** OID de `purge-blobs.txt` esté en `/tmp/head.txt`
-(es la propia definición) y que el total a eliminar ronde los 340-400 MB.
+Hace exactamente esto:
+
+```bash
+# blobs vivos en TODAS las ramas locales (nunca refs/remotes: origin/* apunta a
+# los commits viejos y mantendría vivos justo los blobs a borrar)
+git for-each-ref --format='%(objectname)' refs/heads | sort -u \
+  | while read -r c; do git ls-tree -r "$c"; done | awk '{print $3}' | sort -u > keep.txt
+
+# blobs > 100 KB de todo el historial (solo hashes: cat-file no acepta "<sha> <ruta>")
+git rev-list --objects --all | awk '{print $1}' \
+  | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize)' > info.txt
+awk '$1 == "blob" && $3 > 102400 {print $2}' info.txt | sort -u > big.txt
+
+# históricos que ya no están vivos
+comm -23 big.txt keep.txt > purge.txt
+```
+
+Resultado esperado **después del release**: ~250 blobs y **~400 MB** a eliminar.
 
 ### 3. Purga
 
 ```bash
-git status --porcelain      # debe estar vacío
-git filter-repo --strip-blobs-with-ids /tmp/purge-blobs.txt
-
-# filter-repo elimina el remote a propósito
-git remote add origin https://github.com/vandalieu06/cer-molina-ser.git
+bash scripts/purge-history.sh --run
 ```
+
+Internamente: `git filter-repo --force --strip-blobs-with-ids purge.txt` y re-añade el remote
+(que filter-repo elimina a propósito).
 
 ### 4. Verificación local (antes de publicar)
 
@@ -144,6 +163,7 @@ git clone https://github.com/vandalieu06/cer-molina-ser.git cer-molina-ser-nuevo
 
 ## Affected files
 
+- `scripts/purge-history.sh` — análisis + purga reproducible.
 - Historial de git (`main` y `develop`) — sin cambios de contenido en el árbol.
 - `docs/images.md` — nota sobre dónde viven los originales tras la purga.
 - `specs/0.1.0/00-changelog.md` — entrada al cerrar.
@@ -151,7 +171,9 @@ git clone https://github.com/vandalieu06/cer-molina-ser.git cer-molina-ser-nuevo
 
 ## Tests
 
-- `git bundle verify docs/cer-molina-cer/.backup/cer-pre-purge-2026-11-17.bundle`.
+- `bash scripts/purge-history.sh` sin `--run` informa del número de blobs y del peso, y no
+  escribe nada.
+- `git bundle verify docs/cer-molina-cer/.backup/cer-pre-purge-*.bundle`.
 - `git diff --name-status origin/develop..HEAD` antes y después de la purga: idéntico.
 - `git cat-file -e <oid de un jpg antiguo>` falla tras la purga; `git cat-file -e <oid de un
   webp actual>` funciona.
