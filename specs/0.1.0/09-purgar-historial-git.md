@@ -2,7 +2,7 @@
 code: "09"
 title: "Purgar del historial de git los blobs de imagen antiguos"
 project: "cer-molina-ser"
-status: in-progress
+status: completed
 version: "0.1.0"
 date: 2026-11-17
 tags: [spec, sdd, git, mantenimiento]
@@ -184,9 +184,30 @@ git clone https://github.com/vandalieu06/cer-molina-ser.git cer-molina-ser-nuevo
 
 ## Acceptance criteria
 
-- [ ] Existe el `bundle` completo previo y se ha verificado con `git bundle verify`.
-- [ ] `.git` baja de 406 MB a <40 MB sin cambios en `git diff origin/develop..HEAD`.
-- [ ] `main` y `develop` reescritos y publicados con `--force`; `git fsck --full` limpio.
-- [ ] Un clon nuevo compila (`pnpm build`, `pnpm astro check`) y sirve el sitio completo.
-- [ ] Los `.webp` actuales siguen en el historial; los PNG/JPG originales ya no.
-- [ ] Queda documentado en `docs/images.md` dónde están los originales y cómo restaurar.
+- [x] Existe el `bundle` completo previo y se ha verificado con `git bundle verify`
+  (`docs/cer-molina-cer/.backup/cer-pre-purge-2026-11-17.bundle`).
+- [x] `.git` baja de 428 MB a 21 MB sin cambios en el árbol (mismo hash de tree).
+- [x] `main` y `develop` reescritos y publicados con `--force`; `git fsck --full` limpio.
+- [x] Un clon nuevo compila (`pnpm build`, `pnpm astro check`) y sirve el sitio completo.
+- [x] Los `.webp` actuales siguen en el historial; los PNG/JPG originales ya no.
+- [x] Queda documentado en `docs/images.md` dónde están los originales y cómo restaurar.
+
+## Resultado (2026-11-17)
+
+Ejecutado con `scripts/purge-history.sh --run` sobre `main` ya actualizado:
+
+| Métrica | Antes | Después |
+| --- | --- | --- |
+| `.git` local | 428 MB | **21 MB** |
+| Blobs >100 KB en el historial | 257 | 53 |
+| Objetos en el pack | 484 | 654 (más ficheros actuales, menos historia) |
+| Hash del árbol de `main` | — | `e49030a` (idéntico al previo) |
+
+- 204 blobs / 413 MB eliminados. Un blob antiguo (`e27c13ce…`, `IMG_5770.jpg` de 11,8 MB) ya no
+  existe en local; los `.webp` actuales siguen íntegros.
+- `git fsck --full` limpio y *force push* de `develop` y `main` correcto.
+- El deploy de Pages posterior al *force push* terminó en verde (32 s build + 11 s deploy).
+- Clon limpio desde GitHub: `.git` 21 MB, `pnpm install` + `astro check` (0 errores) + `build`
+  (18 MB de `dist/`, 118 fichas) correctos.
+- **Pendiente en GitHub**: la API sigue reportando ~404 MB porque GitHub no ejecuta el GC de
+  objetos inalcanzables de inmediato. Hay que abrir ticket a soporte si en unos días no baja.
