@@ -1,0 +1,21 @@
+# Despliegue en Dokploy (proveedor Docker Compose).
+# Dokploy usa por defecto ./docker-compose.yml como compose path.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Opcional, build-time: Astro.site (canonical/OG). Hoy no se usa en el código.
+      # args:
+      #   SITE_URL: ${SITE_URL:-}
+    expose:
+      - "80"
+    # Para probar en local sin Dokploy, descomenta:
+    # ports:
+    #   - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

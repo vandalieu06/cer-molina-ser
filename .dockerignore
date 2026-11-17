@@ -1,0 +1,31 @@
+# dependencias y build local
+node_modules/
+dist/
+.astro/
+
+# control de versiones y CI
+.git/
+.github/
+.gitignore
+
+# documentación y specs (no se sirven)
+specs/
+docs/
+AGENTS.md
+DESIGN.md
+README.md
+skills-lock.json
+.agents/
+
+# docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# entorno y basura del SO
+.env
+.env.*
+.DS_Store
+.idea/
+npm-debug.log*
+pnpm-debug.log*

@@ -1,9 +1,28 @@
 ---
-import bgCER from "@assets/bg-cer.jpg";
+import { Picture } from "astro:assets";
+import bgCER from "@assets/bg-cer.webp";
 ---
 
-<section class="cer-section py-24 flex justify-center text-white">
-  <div class="w-full xl:max-w-7xl px-6">
+<section
+  class="relative isolate py-24 flex justify-center text-white overflow-hidden"
+>
+  <Picture
+    src={bgCER}
+    formats={["avif", "webp"]}
+    fallbackFormat="webp"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    alt=""
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
+  <div
+    class="absolute inset-0 -z-10 bg-linear-to-r from-[#4f0000]/95 to-[#4f0000]/70"
+  >
+  </div>
+
+  <div class="relative z-10 w-full xl:max-w-7xl px-6">
     <div class="max-w-3xl">
       <span class="text-gold font-bold tracking-widest uppercase text-sm font-sans">
         Gestión Ética
@@ -51,17 +70,3 @@ import bgCER from "@assets/bg-cer.jpg";
   </div>
 </section>
 
-<style define:vars={{ bgUrl: `url(${bgCER.src})` }}>
-  .cer-section {
-    background-image:
-      linear-gradient(
-        to right,
-        rgba(79, 0, 0, 0.95) 0%,
-        rgba(79, 0, 0, 0.7) 100%
-      ),
-      var(--bgUrl);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  }
-</style>

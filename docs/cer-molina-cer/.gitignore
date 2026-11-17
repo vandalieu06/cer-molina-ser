@@ -1,0 +1,10 @@
+# Los originales NO se versionan: pesan ~400 MB y viven en el backup de Drive.
+# Solo se sube la estructura de carpetas (.gitkeep) y este README.
+*
+!*/
+!.gitignore
+!.gitkeep
+!README.md
+
+# El archivo de backup local tampoco entra al repo.
+.backup/
