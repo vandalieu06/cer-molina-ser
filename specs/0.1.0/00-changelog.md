@@ -10,3 +10,4 @@
 | 2026-10-23 | 06 | Dockerfile multi-stage (Node + pnpm → nginx) y `docker-compose.yml` para desplegar en Dokploy; `BASE_PATH`/`SITE_URL` configurables por entorno |
 | 2026-11-17 | 07 | Imágenes a webp con nombres normalizados (slugs ASCII), galería con `<Image>` responsiva, PDF convertido y backup de originales en `docs/cer-molina-cer/`: `src/assets` 414 MB → 21 MB |
 | 2026-11-17 | 08 | Fondos de Hero, Método CER y Adoptar ahora con `<Picture>` (AVIF/WebP, 3 anchos) en vez de `background-image` CSS |
+| 2026-11-17 | 09 | Purga del historial con `git filter-repo` (204 blobs / 413 MB): `.git` 428 MB → 21 MB, con `git bundle` de seguridad previo |

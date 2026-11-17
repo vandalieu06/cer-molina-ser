@@ -91,9 +91,10 @@ propósito; decidir al cerrar el rediseño:
 
 ## Historial de git
 
-Hasta la spec 09 el historial contenía los PNG/JPG originales (406 MB de `.git`). Tras la purga
-solo quedan los `.webp` actuales: **los originales viven únicamente en `docs/cer-molina-cer/` y en
-el backup de Drive** (`.backup/cer-molina-cer-originales-*.tar.gz`). Restaurar:
+Hasta la spec 09 el historial contenía los PNG/JPG originales. El 2026-11-17 se purgó con
+`scripts/purge-history.sh` (204 blobs, 413 MB): `.git` pasó de 428 MB a **21 MB** y solo quedan los
+`.webp` actuales. **Los originales viven únicamente en `docs/cer-molina-cer/` y en el backup de
+Drive** (`.backup/cer-molina-cer-originales-*.tar.gz`). Restaurar:
 
 ```bash
 tar -xzf docs/cer-molina-cer/.backup/cer-molina-cer-originales-YYYY-MM-DD.tar.gz -C docs/cer-molina-cer
